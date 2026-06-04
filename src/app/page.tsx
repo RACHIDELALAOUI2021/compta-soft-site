@@ -83,10 +83,10 @@ export default function Home() {
         .nav-cta{background:var(--dk);color:#fff;padding:10px 22px;border-radius:100px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:background .2s}
         .nav-cta:hover{background:var(--g)}
         /* hero */
-        .hero{min-height:91vh;padding:72px 60px 56px;position:relative;overflow:hidden;background:var(--cr)}
-        .hero-grid{display:grid;grid-template-columns:55% 45%;gap:48px;align-items:center;max-width:1200px;margin:0 auto;position:relative;z-index:1}
-        .hero-left{min-width:0}
-        .hero-right{min-width:0;position:relative;height:520px;border-radius:20px;overflow:hidden}
+        .hero{min-height:91vh;padding:72px 60px 56px;position:relative;overflow:hidden;max-width:100vw;background:var(--cr)}
+        .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1200px;margin:0 auto;position:relative;z-index:1;overflow:hidden}
+        .hero-left{min-width:0;overflow:hidden}
+        .hero-right{min-width:0;overflow:hidden;position:relative;height:520px;border-radius:20px}
         .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1.2s ease}
         /* buttons */
         .btn-dk{background:var(--dk);color:#fff;padding:13px 26px;border-radius:100px;font-size:14px;font-weight:500;border:none;cursor:pointer;transition:all .2s}
@@ -128,12 +128,7 @@ export default function Home() {
 
       {/* NAV */}
       <nav className="nav">
-        <svg width="160" height="36" viewBox="0 0 160 36" xmlns="http://www.w3.org/2000/svg" aria-label="Compta Soft">
-          <rect x="0" y="2" width="32" height="32" rx="7" fill="#0E7A73"/>
-          <text x="16" y="23" fontFamily="system-ui,sans-serif" fontSize="15" fontWeight="900" fill="#fff" textAnchor="middle">CS</text>
-          <text x="42" y="26" fontFamily="system-ui,sans-serif" fontSize="22" fontWeight="800" fill="#061B3A">Compta</text>
-          <text x="113" y="26" fontFamily="system-ui,sans-serif" fontSize="22" fontWeight="800" fill="#0E7A73">Soft</text>
-        </svg>
+        <img src="/brand/compta-soft-nav.svg" alt="Compta Soft" style={{height:44, width:"auto"}} />
         <div className="nav-links">
           <a href="#features">Fonctionnalités</a>
           <a href="#tarifs">Tarifs</a>
