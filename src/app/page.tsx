@@ -83,8 +83,8 @@ export default function Home() {
         .nav-cta{background:var(--dk);color:#fff;padding:10px 22px;border-radius:100px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:background .2s}
         .nav-cta:hover{background:var(--g)}
         /* hero */
-        .hero{min-height:91vh;padding:72px 60px 56px;position:relative;overflow:hidden;max-width:100vw;background:var(--cr)}
-        .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1200px;margin:0 auto;position:relative;z-index:1;overflow:hidden}
+        .hero{min-height:91vh;padding:56px 60px 48px;position:relative;overflow:hidden;max-width:100vw;background:var(--cr)}
+        .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;max-width:1200px;margin:0 auto;position:relative;z-index:1;overflow:hidden}
         .hero-left{min-width:0;overflow:hidden}
         .hero-right{min-width:0;overflow:hidden;position:relative;height:520px;border-radius:20px}
         .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1.2s ease}
@@ -146,7 +146,7 @@ export default function Home() {
               <span style={{width:6,height:6,background:"var(--g)",borderRadius:"50%",animation:"pulse 2s infinite",display:"inline-block"}}/>
               Conforme CGNC · PCM 720 comptes · v1.0.0
             </div>
-            <h1 className="a2" style={{fontFamily:"'Syne',sans-serif",fontSize:"clamp(38px,4.5vw,62px)",fontWeight:800,lineHeight:1.08,letterSpacing:-1.5,color:"var(--dk)"}}>
+            <h1 className="a2" style={{fontFamily:"'Syne',sans-serif",fontSize:"clamp(32px,3.5vw,48px)",fontWeight:800,lineHeight:1.08,letterSpacing:-1.5,color:"var(--dk)"}}>
               La comptabilité<br/>marocaine,<br/><em style={{fontStyle:"normal",color:"var(--g)"}}>enfin simple.</em>
             </h1>
             <p className="a3" style={{fontSize:16,color:"#555",lineHeight:1.7,marginTop:20,maxWidth:420}}>

@@ -1,0 +1,30 @@
+---
+description: Layout, logo et slideshow de la landing Compta Soft
+globs: src/app/page.tsx
+alwaysApply: false
+---
+
+# Landing Compta Soft
+
+Référence complète : `CLAUDE.md` et `AGENTS.md`.
+
+## Logo navigation
+
+SVG inline dans le JSX — pas de `<img src="/brand/...">`.
+Badge `#0E7A73`, CS blanc, Compta `#061B3A`, Soft `#0E7A73`, `height: 36px`, `width: auto`.
+
+## Hero
+
+```css
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.hero-left, .hero-right { min-width: 0; overflow: hidden; }
+.hero { overflow: hidden; max-width: 100vw; }
+```
+
+Interdit : colonnes en `%` ou largeur fixe en px.
+
+## Slideshow
+
+- Container : `position: relative; overflow: hidden; border-radius: 20px`
+- Chaque slide : `position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%`
+- Opacité 0/1 + `transition: opacity 1s ease` pour la slide active
