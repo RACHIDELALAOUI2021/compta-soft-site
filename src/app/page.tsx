@@ -121,7 +121,12 @@ export default function Home() {
 
       {/* NAV */}
       <nav style={{position:"sticky",top:0,zIndex:100,padding:"16px 48px",display:"flex",alignItems:"center",justifyContent:"space-between",background:"rgba(247,244,239,0.92)",backdropFilter:"blur(12px)",borderBottom:"1px solid rgba(29,158,117,0.1)"}}>
-        <img src="/brand/compta-soft-nav.svg" alt="Compta Soft" style={{height:40}} />
+        <svg viewBox="0 0 280 48" xmlns="http://www.w3.org/2000/svg" aria-label="Compta Soft" style={{ height: 36, width: "auto", flexShrink: 0 }}>
+          <rect x="0" y="4" width="40" height="40" rx="8" fill="#0E7A73" />
+          <text x="20" y="30" fontFamily="system-ui, sans-serif" fontSize="18" fontWeight="900" fill="#fff" textAnchor="middle">CS</text>
+          <text x="56" y="32" fontFamily="system-ui, sans-serif" fontSize="26" fontWeight="800" fill="#061B3A" letterSpacing="-0.5">Compta</text>
+          <text x="194" y="32" fontFamily="system-ui, sans-serif" fontSize="26" fontWeight="800" fill="#0E7A73" letterSpacing="-0.5">Soft</text>
+        </svg>
         <div className="nav-links" style={{display:"flex",gap:32,fontSize:14}}>
           <a href="#features" style={{color:"#555",textDecoration:"none"}}>Fonctionnalités</a>
           <a href="#tarifs" style={{color:"#555",textDecoration:"none"}}>Tarifs</a>
@@ -133,10 +138,10 @@ export default function Home() {
       </nav>
 
       {/* HERO */}
-      <section className="hero" style={{minHeight:"92vh",display:"flex",flexDirection:"column",justifyContent:"center",padding:"80px 48px 60px",paddingRight:48,position:"relative",overflow:"hidden",background:"var(--cream)"}}>
+      <section className="hero" style={{minHeight:"92vh",display:"flex",flexDirection:"column",justifyContent:"center",padding:"80px 48px 60px",paddingRight:48,position:"relative",overflow:"hidden",maxWidth:"100vw",background:"var(--cream)"}}>
         <div style={{position:"absolute",inset:0,background:"radial-gradient(ellipse 80% 60% at 70% 50%, rgba(29,158,117,0.12) 0%, transparent 70%)",pointerEvents:"none"}}/>
-        <div className="hero-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:64,alignItems:"center",width:"100%",maxWidth:1200,margin:"0 auto",position:"relative",zIndex:1}}>
-          <div>
+        <div className="hero-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:64,alignItems:"center",width:"100%",maxWidth:1200,margin:"0 auto",position:"relative",zIndex:1,overflow:"hidden"}}>
+          <div style={{minWidth:0,overflow:"hidden"}}>
             <div className="hero-badge" style={{display:"inline-flex",alignItems:"center",gap:8,background:"#fff",border:"1px solid rgba(29,158,117,0.3)",borderRadius:100,padding:"6px 16px",fontSize:12,color:"var(--green)",fontWeight:500,marginBottom:32,width:"fit-content"}}>
               <span style={{width:6,height:6,background:"var(--green)",borderRadius:"50%",animation:"pulse 2s infinite",display:"inline-block"}}/>
               Conforme CGNC · PCM 720 comptes · v1.0.0
@@ -163,7 +168,7 @@ export default function Home() {
 
           <div
             className="hero-slideshow"
-            style={{maxWidth:"100%",overflow:"hidden",flexShrink:0,borderRadius:20,height:520,position:"relative",boxShadow:"0 24px 48px rgba(10,42,30,0.12)"}}
+            style={{minWidth:0,overflow:"hidden",borderRadius:20,height:520,position:"relative",boxShadow:"0 24px 48px rgba(10,42,30,0.12)"}}
           >
             {HERO_SLIDES.map((src, i) => (
               <img
@@ -171,13 +176,13 @@ export default function Home() {
                 src={src}
                 alt=""
                 style={{
-                  position:"absolute",
-                  inset:0,
-                  width:"100%",
-                  height:"100%",
-                  objectFit:"cover",
-                  opacity:activeSlide === i ? 1 : 0,
-                  transition:"opacity 1s ease",
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  opacity: activeSlide === i ? 1 : 0,
+                  transition: "opacity 1s ease",
                 }}
               />
             ))}
