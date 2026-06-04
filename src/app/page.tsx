@@ -84,7 +84,7 @@ export default function Home() {
         .nav-cta:hover{background:var(--g)}
         /* hero */
         .hero{min-height:91vh;padding:56px 60px 48px;position:relative;overflow:hidden;max-width:100vw;background:var(--cr)}
-        .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;max-width:1200px;margin:0 auto;position:relative;z-index:1;overflow:hidden}
+        .hero-grid{display:grid;grid-template-columns:55% 45%;gap:32px;align-items:center;max-width:1200px;margin:0 auto;position:relative;z-index:1;overflow:hidden}
         .hero-left{min-width:0;overflow:hidden}
         .hero-right{min-width:0;overflow:hidden;position:relative;height:520px;border-radius:20px}
         .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1.2s ease}
@@ -128,7 +128,7 @@ export default function Home() {
 
       {/* NAV */}
       <nav className="nav">
-        <img src="/brand/compta-soft-nav.svg" alt="Compta Soft" style={{height:44, width:"auto"}} />
+        <img src="/brand/compta-soft-nav.svg" alt="Compta Soft" style={{height:44,width:"auto"}} />
         <div className="nav-links">
           <a href="#features">Fonctionnalités</a>
           <a href="#tarifs">Tarifs</a>
@@ -146,7 +146,7 @@ export default function Home() {
               <span style={{width:6,height:6,background:"var(--g)",borderRadius:"50%",animation:"pulse 2s infinite",display:"inline-block"}}/>
               Conforme CGNC · PCM 720 comptes · v1.0.0
             </div>
-            <h1 className="a2" style={{fontFamily:"'Syne',sans-serif",fontSize:"clamp(32px,3.5vw,48px)",fontWeight:800,lineHeight:1.08,letterSpacing:-1.5,color:"var(--dk)"}}>
+            <h1 className="a2" style={{fontFamily:"'Syne',sans-serif",fontSize:"clamp(28px,3vw,44px)",fontWeight:800,lineHeight:1.1,letterSpacing:-1,color:"var(--dk)"}}>
               La comptabilité<br/>marocaine,<br/><em style={{fontStyle:"normal",color:"var(--g)"}}>enfin simple.</em>
             </h1>
             <p className="a3" style={{fontSize:16,color:"#555",lineHeight:1.7,marginTop:20,maxWidth:420}}>
