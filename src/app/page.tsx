@@ -1,8 +1,22 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const HERO_SLIDES = [
+  "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=900&q=80",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80",
+  "https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&q=80",
+];
 
 export default function Home() {
   const countersStarted = useRef(false);
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     // Scroll reveal
@@ -97,6 +111,8 @@ export default function Home() {
           .footer-top { grid-template-columns:1fr !important; }
           .hero-stats { flex-wrap:wrap; gap:24px; }
           .hero { padding:60px 24px 40px; }
+          .hero-grid { grid-template-columns:1fr !important; }
+          .hero-slideshow { height:320px !important; }
           .tabs-section, .pricing, .cta, footer { padding-left:24px; padding-right:24px; }
           nav { padding:16px 24px; }
           .nav-links { display:none; }
@@ -105,9 +121,7 @@ export default function Home() {
 
       {/* NAV */}
       <nav style={{position:"sticky",top:0,zIndex:100,padding:"16px 48px",display:"flex",alignItems:"center",justifyContent:"space-between",background:"rgba(247,244,239,0.92)",backdropFilter:"blur(12px)",borderBottom:"1px solid rgba(29,158,117,0.1)"}}>
-        <div style={{fontFamily:"'Syne',sans-serif",fontSize:20,fontWeight:800,color:"var(--dark)",letterSpacing:"-0.5px"}}>
-          Compta<span style={{color:"var(--green)"}}>Soft</span>
-        </div>
+        <img src="/brand/compta-soft-full.svg" alt="Compta Soft" style={{height:36}} />
         <div className="nav-links" style={{display:"flex",gap:32,fontSize:14}}>
           <a href="#features" style={{color:"#555",textDecoration:"none"}}>Fonctionnalités</a>
           <a href="#tarifs" style={{color:"#555",textDecoration:"none"}}>Tarifs</a>
@@ -121,27 +135,83 @@ export default function Home() {
       {/* HERO */}
       <section className="hero" style={{minHeight:"92vh",display:"flex",flexDirection:"column",justifyContent:"center",padding:"80px 48px 60px",position:"relative",overflow:"hidden",background:"var(--cream)"}}>
         <div style={{position:"absolute",inset:0,background:"radial-gradient(ellipse 80% 60% at 70% 50%, rgba(29,158,117,0.12) 0%, transparent 70%)",pointerEvents:"none"}}/>
-        <div className="hero-badge" style={{display:"inline-flex",alignItems:"center",gap:8,background:"#fff",border:"1px solid rgba(29,158,117,0.3)",borderRadius:100,padding:"6px 16px",fontSize:12,color:"var(--green)",fontWeight:500,marginBottom:32,width:"fit-content"}}>
-          <span style={{width:6,height:6,background:"var(--green)",borderRadius:"50%",animation:"pulse 2s infinite",display:"inline-block"}}/>
-          Conforme CGNC · PCM 720 comptes · v1.0.0
-        </div>
-        <h1 className="hero-title" style={{fontFamily:"'Syne',sans-serif",fontSize:"clamp(48px,6vw,84px)",fontWeight:800,lineHeight:1.05,letterSpacing:-2,maxWidth:720,color:"var(--dark)",margin:0}}>
-          La comptabilité<br/>marocaine,<br/><em style={{fontStyle:"normal",color:"var(--green)"}}>enfin simple.</em>
-        </h1>
-        <p className="hero-sub" style={{fontSize:18,color:"#555",maxWidth:480,lineHeight:1.7,marginTop:24}}>
-          De la saisie à la liasse Simpl-IS, Compta Soft réunit tout ce dont les PME et cabinets marocains ont besoin — sans compromis réglementaire.
-        </p>
-        <div className="hero-btns" style={{display:"flex",gap:12,marginTop:36}}>
-          <button className="btn-dark" style={{background:"var(--dark)",color:"#fff",padding:"14px 28px",borderRadius:100,fontSize:15,fontWeight:500,border:"none",cursor:"pointer",transition:"all 0.25s"}}>Demander une démo →</button>
-          <button className="btn-outline" style={{background:"transparent",color:"var(--dark)",padding:"14px 28px",borderRadius:100,fontSize:15,fontWeight:500,border:"1.5px solid rgba(10,42,30,0.2)",cursor:"pointer",transition:"all 0.25s"}}>Voir les fonctionnalités</button>
-        </div>
-        <div id="stats-section" className="hero-stats" style={{display:"flex",gap:48,marginTop:56,paddingTop:40,borderTop:"1px solid rgba(10,42,30,0.08)"}}>
-          {[{count:"720",label:"Comptes PCM CGNC"},{count:"5",label:"Journaux standards"},{count:"8",label:"États de synthèse"},{count:"236",label:"Tests unitaires"}].map((s,i)=>(
-            <div key={i}>
-              <div data-count={s.count} style={{fontFamily:"'Syne',sans-serif",fontSize:36,fontWeight:800,color:"var(--dark)"}}>0</div>
-              <div style={{fontSize:13,color:"#888",marginTop:2}}>{s.label}</div>
+        <div className="hero-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:48,alignItems:"center",width:"100%",maxWidth:1200,margin:"0 auto",position:"relative",zIndex:1}}>
+          <div>
+            <div className="hero-badge" style={{display:"inline-flex",alignItems:"center",gap:8,background:"#fff",border:"1px solid rgba(29,158,117,0.3)",borderRadius:100,padding:"6px 16px",fontSize:12,color:"var(--green)",fontWeight:500,marginBottom:32,width:"fit-content"}}>
+              <span style={{width:6,height:6,background:"var(--green)",borderRadius:"50%",animation:"pulse 2s infinite",display:"inline-block"}}/>
+              Conforme CGNC · PCM 720 comptes · v1.0.0
             </div>
-          ))}
+            <h1 className="hero-title" style={{fontFamily:"'Syne',sans-serif",fontSize:"clamp(40px,5vw,72px)",fontWeight:800,lineHeight:1.05,letterSpacing:-2,maxWidth:560,color:"var(--dark)",margin:0}}>
+              La comptabilité<br/>marocaine,<br/><em style={{fontStyle:"normal",color:"var(--green)"}}>enfin simple.</em>
+            </h1>
+            <p className="hero-sub" style={{fontSize:18,color:"#555",maxWidth:480,lineHeight:1.7,marginTop:24}}>
+              De la saisie à la liasse Simpl-IS, Compta Soft réunit tout ce dont les PME et cabinets marocains ont besoin — sans compromis réglementaire.
+            </p>
+            <div className="hero-btns" style={{display:"flex",flexWrap:"wrap",gap:12,marginTop:36}}>
+              <button className="btn-dark" style={{background:"var(--dark)",color:"#fff",padding:"14px 28px",borderRadius:100,fontSize:15,fontWeight:500,border:"none",cursor:"pointer",transition:"all 0.25s"}}>Demander une démo →</button>
+              <button className="btn-outline" style={{background:"transparent",color:"var(--dark)",padding:"14px 28px",borderRadius:100,fontSize:15,fontWeight:500,border:"1.5px solid rgba(10,42,30,0.2)",cursor:"pointer",transition:"all 0.25s"}}>Voir les fonctionnalités</button>
+            </div>
+            <div id="stats-section" className="hero-stats" style={{display:"flex",flexWrap:"wrap",gap:32,marginTop:48,paddingTop:32,borderTop:"1px solid rgba(10,42,30,0.08)"}}>
+              {[{count:"720",label:"Comptes PCM CGNC"},{count:"5",label:"Journaux standards"},{count:"8",label:"États de synthèse"},{count:"236",label:"Tests unitaires"}].map((s,i)=>(
+                <div key={i}>
+                  <div data-count={s.count} style={{fontFamily:"'Syne',sans-serif",fontSize:32,fontWeight:800,color:"var(--dark)"}}>0</div>
+                  <div style={{fontSize:13,color:"#888",marginTop:2}}>{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div
+            className="hero-slideshow"
+            style={{borderRadius:20,overflow:"hidden",height:520,position:"relative",boxShadow:"0 24px 48px rgba(10,42,30,0.12)"}}
+          >
+            {HERO_SLIDES.map((src, i) => (
+              <img
+                key={src}
+                src={src}
+                alt=""
+                style={{
+                  position:"absolute",
+                  inset:0,
+                  width:"100%",
+                  height:"100%",
+                  objectFit:"cover",
+                  opacity:activeSlide === i ? 1 : 0,
+                  transition:"opacity 1s ease",
+                }}
+              />
+            ))}
+            <div
+              style={{
+                position:"absolute",
+                bottom:20,
+                left:"50%",
+                transform:"translateX(-50%)",
+                display:"flex",
+                gap:8,
+                zIndex:2,
+              }}
+            >
+              {HERO_SLIDES.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`Photo ${i + 1}`}
+                  onClick={() => setActiveSlide(i)}
+                  style={{
+                    width:10,
+                    height:10,
+                    borderRadius:"50%",
+                    border:"none",
+                    padding:0,
+                    cursor:"pointer",
+                    background:activeSlide === i ? "var(--green)" : "rgba(255,255,255,0.5)",
+                    transition:"background 0.3s ease",
+                  }}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
