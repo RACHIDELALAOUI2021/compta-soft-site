@@ -211,16 +211,12 @@ export default function Home() {
       {/* Navigation */}
       <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur">
         <nav className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
-          <a href="#" className="flex items-center gap-2.5">
-            <span
-              className="flex h-9 w-9 items-center justify-center rounded-lg text-sm font-bold text-white"
-              style={{ backgroundColor: primary }}
-            >
-              CS
-            </span>
-            <span className="text-lg font-semibold tracking-tight text-slate-900">
-              Compta <span style={{ color: primary }}>Soft</span>
-            </span>
+          <a href="#" className="flex items-center">
+            <img
+              src="/brand/compta-soft-full.svg"
+              alt="Compta Soft"
+              height={36}
+            />
           </a>
 
           <ul className="hidden items-center gap-8 md:flex">
