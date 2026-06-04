@@ -1,769 +1,346 @@
-const navLinks = [
-  { label: "Saisie", href: "#saisie" },
-  { label: "États", href: "#etats" },
-  { label: "Fiscalité", href: "#fiscalite" },
-  { label: "Trésorerie", href: "#tresorerie" },
-  { label: "Tarifs", href: "#tarifs" },
-];
-
-const plans = [
-  {
-    name: "Starter",
-    price: "4 900",
-    unit: "MAD / an",
-    description: "TPE et indépendants — 1 dossier, socle CGNC complet.",
-    features: [
-      "1 dossier société",
-      "PCM CGNC · saisie & états",
-      "Balance & grand livre",
-      "Support email",
-    ],
-    highlighted: false,
-    cta: "Choisir Starter",
-  },
-  {
-    name: "PME",
-    price: "9 900",
-    unit: "MAD / an",
-    description: "PME multi-flux — liasse Simpl-IS et multi-dossiers.",
-    features: [
-      "Jusqu'à 5 dossiers",
-      "Liasse Simpl-IS & fiscalité IS",
-      "Rapprochement bancaire IA",
-      "Support prioritaire",
-    ],
-    highlighted: true,
-    cta: "Choisir PME",
-  },
-  {
-    name: "Cabinet",
-    price: "Sur devis",
-    unit: "",
-    description: "Cabinets et fiduciaires — dossiers illimités, déploiement serveur.",
-    features: [
-      "Dossiers illimités",
-      "Kit client on-premise",
-      "Formation équipe",
-      "SLA & accompagnement",
-    ],
-    highlighted: false,
-    cta: "Nous contacter",
-  },
-];
-
-function CheckIcon({ className = "text-brand" }: { className?: string }) {
-  return (
-    <svg
-      className={`mt-0.5 h-5 w-5 shrink-0 ${className}`}
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      aria-hidden
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M5 13l4 4L19 7"
-      />
-    </svg>
-  );
-}
-
-function MockupFrame({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div
-      className="overflow-hidden rounded-2xl bg-[#0D3D2E] p-3 shadow-xl shadow-[#0D3D2E]/25 sm:p-4"
-      aria-hidden
-    >
-      <div className="mb-2 flex items-center gap-1.5 px-1">
-        <span className="h-2 w-2 rounded-full bg-white/20" />
-        <span className="h-2 w-2 rounded-full bg-white/20" />
-        <span className="h-2 w-2 rounded-full bg-white/20" />
-        <span className="ml-2 text-[10px] font-medium text-white/50">
-          {title}
-        </span>
-      </div>
-      <div className="overflow-hidden rounded-xl bg-white">{children}</div>
-    </div>
-  );
-}
-
-function FeatureBullets({ items }: { items: string[] }) {
-  return (
-    <ul className="mt-6 space-y-3">
-      {items.map((item) => (
-        <li
-          key={item}
-          className="flex items-start gap-3 text-sm leading-relaxed text-neutral-600 md:text-base"
-        >
-          <CheckIcon />
-          {item}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function HeroMockup() {
-  return (
-    <MockupFrame title="Compta Soft v1.0.0 — Journal BNQ">
-      <div className="border-b border-neutral-100 bg-[#E8F5F0] px-4 py-2">
-        <p className="text-xs font-semibold text-[#0D3D2E]">
-          Exercice 2026 · Dossier HEBERSOFT · Journal BNQ
-        </p>
-      </div>
-      <table className="w-full border-collapse text-left text-[11px]">
-        <thead>
-          <tr className="border-b border-neutral-100 bg-neutral-50 text-[10px] font-semibold uppercase tracking-wide text-neutral-500">
-            <th className="px-3 py-2">Compte</th>
-            <th className="px-2 py-2">Libellé</th>
-            <th className="px-2 py-2 text-right">Débit</th>
-            <th className="px-3 py-2 text-right">Crédit</th>
-          </tr>
-        </thead>
-        <tbody className="text-neutral-700">
-          <tr className="border-b border-neutral-50">
-            <td className="px-3 py-2 font-mono text-[10px]">6111</td>
-            <td className="px-2 py-2">Achats marchandises</td>
-            <td className="px-2 py-2 text-right tabular-nums">12 400,00</td>
-            <td className="px-3 py-2 text-right tabular-nums text-neutral-300">
-              —
-            </td>
-          </tr>
-          <tr className="border-b border-neutral-50 bg-[#E8F5F0]/40">
-            <td className="px-3 py-2 font-mono text-[10px]">3421</td>
-            <td className="px-2 py-2">Clients — ventes</td>
-            <td className="px-2 py-2 text-right tabular-nums text-neutral-300">
-              —
-            </td>
-            <td className="px-3 py-2 text-right tabular-nums">14 880,00</td>
-          </tr>
-          <tr>
-            <td className="px-3 py-2 font-mono text-[10px]">5141</td>
-            <td className="px-2 py-2">Banques — CIH</td>
-            <td className="px-2 py-2 text-right tabular-nums">2 480,00</td>
-            <td className="px-3 py-2 text-right tabular-nums text-neutral-300">
-              —
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr className="border-t border-neutral-200 bg-neutral-50">
-            <td colSpan={2} className="px-3 py-2 text-[10px] font-semibold text-neutral-900">
-              Pièce n° 2026-BNQ-0042 · VALIDE
-            </td>
-            <td className="px-2 py-2 text-right text-[10px] font-semibold tabular-nums">
-              14 880,00
-            </td>
-            <td className="px-3 py-2 text-right text-[10px] font-semibold tabular-nums">
-              14 880,00
-            </td>
-          </tr>
-        </tfoot>
-      </table>
-    </MockupFrame>
-  );
-}
-
-function SaisieMockup() {
-  const rows = [
-    { ref: "ACH-0187", statut: "BROUILLON", color: "bg-amber-100 text-amber-800" },
-    { ref: "VTE-0441", statut: "VALIDE", color: "bg-emerald-100 text-emerald-800" },
-    { ref: "OD-0009", statut: "CONTRE_PASSE", color: "bg-neutral-200 text-neutral-700" },
-  ];
-  return (
-    <MockupFrame title="Saisie — validation en masse">
-      <div className="flex items-center justify-between border-b border-neutral-100 px-4 py-2">
-        <span className="text-[10px] font-semibold text-neutral-500">
-          Journaux · ACH / VTE / BNQ / CAI / OD
-        </span>
-        <span className="rounded-full bg-brand/10 px-2 py-0.5 text-[10px] font-semibold text-brand">
-          PCM · 720 comptes
-        </span>
-      </div>
-      <div className="divide-y divide-neutral-50">
-        {rows.map((row) => (
-          <div
-            key={row.ref}
-            className="flex items-center justify-between px-4 py-2.5 text-[11px]"
-          >
-            <span className="font-medium text-neutral-800">{row.ref}</span>
-            <span className="text-neutral-500">24 500,00 MAD</span>
-            <span
-              className={`rounded-full px-2 py-0.5 text-[9px] font-bold tracking-wide ${row.color}`}
-            >
-              {row.statut}
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="border-t border-neutral-100 bg-neutral-50 px-4 py-2 text-[10px] text-neutral-500">
-        Saisie unitaire · saisie par lot · validation en masse
-      </div>
-    </MockupFrame>
-  );
-}
-
-function EtatsMockup() {
-  return (
-    <MockupFrame title="Balance générale — 9 colonnes">
-      <div className="flex flex-wrap gap-1 border-b border-neutral-100 px-3 py-2">
-        {["Bilan", "CPC", "ESG", "TF", "ETIC"].map((tab) => (
-          <span
-            key={tab}
-            className={`rounded-md px-2 py-0.5 text-[9px] font-semibold ${
-              tab === "Bilan"
-                ? "bg-brand text-white"
-                : "bg-neutral-100 text-neutral-600"
-            }`}
-          >
-            {tab}
-          </span>
-        ))}
-      </div>
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-[320px] border-collapse text-[10px]">
-          <thead>
-            <tr className="bg-neutral-50 text-neutral-500">
-              <th className="px-2 py-1.5 text-left font-semibold">Compte</th>
-              <th className="px-1 py-1.5 text-right font-semibold">Déb. N</th>
-              <th className="px-1 py-1.5 text-right font-semibold">Créd. N</th>
-              <th className="px-2 py-1.5 text-right font-semibold">Solde N</th>
-            </tr>
-          </thead>
-          <tbody className="text-neutral-700">
-            <tr className="border-t border-neutral-50">
-              <td className="px-2 py-1.5 font-mono">3421</td>
-              <td className="px-1 py-1.5 text-right tabular-nums">—</td>
-              <td className="px-1 py-1.5 text-right tabular-nums">186 200</td>
-              <td className="px-2 py-1.5 text-right font-medium tabular-nums text-brand">
-                186 200 Cr
-              </td>
-            </tr>
-            <tr className="border-t border-neutral-50">
-              <td className="px-2 py-1.5 font-mono">4411</td>
-              <td className="px-1 py-1.5 text-right tabular-nums">94 500</td>
-              <td className="px-1 py-1.5 text-right tabular-nums">—</td>
-              <td className="px-2 py-1.5 text-right font-medium tabular-nums">
-                94 500 Dé
-              </td>
-            </tr>
-            <tr className="border-t border-neutral-50">
-              <td className="px-2 py-1.5 font-mono">5141</td>
-              <td className="px-1 py-1.5 text-right tabular-nums">312 400</td>
-              <td className="px-1 py-1.5 text-right tabular-nums">—</td>
-              <td className="px-2 py-1.5 text-right font-medium tabular-nums">
-                312 400 Dé
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div className="flex justify-end gap-2 border-t border-neutral-100 px-3 py-2">
-        <span className="rounded border border-neutral-200 px-2 py-0.5 text-[9px] font-medium text-neutral-600">
-          PDF
-        </span>
-        <span className="rounded border border-neutral-200 px-2 py-0.5 text-[9px] font-medium text-neutral-600">
-          XLSX
-        </span>
-      </div>
-    </MockupFrame>
-  );
-}
-
-function FiscalMockup() {
-  return (
-    <MockupFrame title="Fiscalité IS — liasse Simpl-IS">
-      <div className="space-y-0 divide-y divide-neutral-100">
-        <div className="flex items-center justify-between px-4 py-2.5">
-          <span className="text-[11px] text-neutral-600">Résultat comptable</span>
-          <span className="text-[11px] font-semibold tabular-nums text-neutral-900">
-            428 150 MAD
-          </span>
-        </div>
-        <div className="flex items-center justify-between bg-[#E8F5F0]/50 px-4 py-2.5">
-          <span className="text-[11px] text-neutral-600">IS · CM · CSS</span>
-          <span className="text-[11px] font-semibold tabular-nums text-[#0D3D2E]">
-            86 420 MAD
-          </span>
-        </div>
-        <div className="flex items-center justify-between px-4 py-2.5">
-          <span className="text-[11px] text-neutral-600">Loi de finances 2026</span>
-          <span className="rounded-full bg-brand/10 px-2 py-0.5 text-[9px] font-semibold text-brand">
-            Paramétrée
-          </span>
-        </div>
-        <div className="flex items-center justify-between px-4 py-2.5">
-          <span className="text-[11px] text-neutral-600">Export liasse EDI DGI</span>
-          <span className="text-[10px] font-medium text-emerald-700">
-            XML validé XSD
-          </span>
-        </div>
-      </div>
-      <div className="border-t border-neutral-100 bg-neutral-50 px-4 py-2 text-[10px] text-neutral-500">
-        Agenda fiscal · déclarations rectificatives
-      </div>
-    </MockupFrame>
-  );
-}
-
-function TresorerieMockup() {
-  return (
-    <MockupFrame title="Trésorerie — rapprochement BNQ">
-      <div className="border-b border-neutral-100 px-4 py-2">
-        <p className="text-[10px] font-semibold text-neutral-500">
-          Relevé CIH · import PDF (extraction IA)
-        </p>
-      </div>
-      <div className="divide-y divide-neutral-50">
-        {[
-          { lib: "Virement client Atlas", montant: "+ 18 200,00", match: true },
-          { lib: "Prélèvement CNSS", montant: "- 4 820,00", match: true },
-          { lib: "Chèque effet n° 8842", montant: "- 12 000,00", match: false },
-        ].map((op) => (
-          <div
-            key={op.lib}
-            className="flex items-center justify-between gap-2 px-4 py-2 text-[11px]"
-          >
-            <span className="truncate text-neutral-700">{op.lib}</span>
-            <span
-              className={`shrink-0 tabular-nums font-medium ${
-                op.montant.startsWith("+") ? "text-emerald-700" : "text-neutral-800"
-              }`}
-            >
-              {op.montant}
-            </span>
-            <span
-              className={`shrink-0 rounded-full px-1.5 py-0.5 text-[8px] font-bold ${
-                op.match
-                  ? "bg-emerald-100 text-emerald-800"
-                  : "bg-amber-100 text-amber-800"
-              }`}
-            >
-              {op.match ? "Rapproché" : "À pointer"}
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="flex items-center justify-between border-t border-neutral-100 bg-[#E8F5F0]/60 px-4 py-2">
-        <span className="text-[10px] text-neutral-600">Position trésorerie</span>
-        <span className="text-[11px] font-bold tabular-nums text-[#0D3D2E]">
-          298 640 MAD
-        </span>
-      </div>
-    </MockupFrame>
-  );
-}
-
-function FeatureSection({
-  id,
-  bgClass,
-  reverse,
-  eyebrow,
-  title,
-  description,
-  bullets,
-  mockup,
-}: {
-  id: string;
-  bgClass: string;
-  reverse?: boolean;
-  eyebrow: string;
-  title: string;
-  description: string;
-  bullets: string[];
-  mockup: React.ReactNode;
-}) {
-  return (
-    <section id={id} className={`px-6 py-20 md:py-28 ${bgClass}`}>
-      <div
-        className={`mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-16 ${
-          reverse ? "lg:[&>*:first-child]:order-2" : ""
-        }`}
-      >
-        <div className="text-left">
-          <p className="text-sm font-semibold uppercase tracking-wider text-brand">
-            {eyebrow}
-          </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-neutral-950 md:text-4xl">
-            {title}
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-neutral-600 md:text-lg">
-            {description}
-          </p>
-          <FeatureBullets items={bullets} />
-        </div>
-        <div>{mockup}</div>
-      </div>
-    </section>
-  );
-}
+"use client";
+import { useEffect, useRef } from "react";
 
 export default function Home() {
+  const countersStarted = useRef(false);
+
+  useEffect(() => {
+    // Scroll reveal
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+    // Counter animation
+    function animateCounter(el: Element) {
+      const target = parseInt((el as HTMLElement).dataset.count || "0");
+      const duration = 1800;
+      const start = performance.now();
+      function update(now: number) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(ease * target).toLocaleString("fr-FR");
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !countersStarted.current) {
+            countersStarted.current = true;
+            document.querySelectorAll("[data-count]").forEach((el) => animateCounter(el));
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    const statsSection = document.getElementById("stats-section");
+    if (statsSection) counterObserver.observe(statsSection);
+
+    return () => {
+      observer.disconnect();
+      counterObserver.disconnect();
+    };
+  }, []);
+
+  function showTab(id: string, btn: HTMLButtonElement) {
+    document.querySelectorAll(".tab-content").forEach((t) => t.classList.remove("active"));
+    document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+    const tab = document.getElementById("tab-" + id);
+    if (tab) tab.classList.add("active");
+    btn.classList.add("active");
+  }
+
   return (
-    <div className="min-h-screen bg-[#FAFAF7] text-neutral-900">
-      <header className="sticky top-0 z-50 px-4 pt-4 sm:px-6">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-2xl border border-neutral-200/80 bg-white px-4 py-3 shadow-sm sm:px-6">
-          <a href="#" className="flex shrink-0 items-center">
-            <img
-              src="/brand/compta-soft-full.svg"
-              alt="Compta Soft"
-              className="h-8 w-auto sm:h-9"
-            />
-          </a>
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+        :root { --green:#1D9E75; --dark:#0A2A1E; --cream:#F7F4EF; --light:#E8F5EE; }
+        body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--dark); overflow-x:hidden; }
+        .reveal { opacity:0; transform:translateY(32px); transition:all 0.7s cubic-bezier(0.16,1,0.3,1); }
+        .reveal.visible { opacity:1; transform:translateY(0); }
+        .tab-content { display:none; animation:fadeIn 0.3s ease; }
+        .tab-content.active { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+        .tab-btn { padding:10px 24px; border-radius:100px; font-size:14px; font-weight:500; border:none; background:transparent; color:#666; cursor:pointer; transition:all 0.2s; }
+        .tab-btn.active { background:var(--dark); color:#fff; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+        @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+        .hero-badge { animation:fadeUp 0.6s ease both; }
+        .hero-title { animation:fadeUp 0.7s 0.1s ease both; }
+        .hero-sub { animation:fadeUp 0.7s 0.2s ease both; }
+        .hero-btns { animation:fadeUp 0.7s 0.3s ease both; }
+        .hero-stats { animation:fadeUp 0.7s 0.4s ease both; }
+        .ticker-track { display:inline-flex; animation:ticker 30s linear infinite; }
+        .mockup-float { animation:float 4s ease-in-out infinite; }
+        .price-card { transition:all 0.3s; }
+        .price-card:hover { transform:translateY(-6px); box-shadow:0 24px 48px rgba(10,42,30,0.1); }
+        .btn-dark:hover { background:var(--green) !important; transform:translateY(-2px); }
+        .btn-outline:hover { border-color:var(--green) !important; color:var(--green) !important; }
+        .btn-green:hover { background:#16785A !important; transform:translateY(-2px); }
+        .nav-cta:hover { background:var(--green) !important; }
+        @media (max-width:768px) {
+          .tab-content.active { grid-template-columns:1fr; }
+          .pricing-grid { grid-template-columns:1fr !important; }
+          .footer-top { grid-template-columns:1fr !important; }
+          .hero-stats { flex-wrap:wrap; gap:24px; }
+          .hero { padding:60px 24px 40px; }
+          .tabs-section, .pricing, .cta, footer { padding-left:24px; padding-right:24px; }
+          nav { padding:16px 24px; }
+          .nav-links { display:none; }
+        }
+      `}</style>
 
-          <ul className="hidden items-center gap-0.5 lg:flex">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="rounded-full px-3 py-2 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+      {/* NAV */}
+      <nav style={{position:"sticky",top:0,zIndex:100,padding:"16px 48px",display:"flex",alignItems:"center",justifyContent:"space-between",background:"rgba(247,244,239,0.92)",backdropFilter:"blur(12px)",borderBottom:"1px solid rgba(29,158,117,0.1)"}}>
+        <div style={{fontFamily:"'Syne',sans-serif",fontSize:20,fontWeight:800,color:"var(--dark)",letterSpacing:"-0.5px"}}>
+          Compta<span style={{color:"var(--green)"}}>Soft</span>
+        </div>
+        <div className="nav-links" style={{display:"flex",gap:32,fontSize:14}}>
+          <a href="#features" style={{color:"#555",textDecoration:"none"}}>Fonctionnalités</a>
+          <a href="#tarifs" style={{color:"#555",textDecoration:"none"}}>Tarifs</a>
+          <a href="#contact" style={{color:"#555",textDecoration:"none"}}>Contact</a>
+        </div>
+        <button className="nav-cta" style={{background:"var(--dark)",color:"#fff",padding:"10px 24px",borderRadius:100,fontSize:13,fontWeight:500,border:"none",cursor:"pointer",transition:"all 0.2s"}}>
+          Demander une démo
+        </button>
+      </nav>
 
-          <div className="flex items-center gap-2">
-            <a
-              href="#tarifs"
-              className="hidden rounded-full px-4 py-2 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 sm:inline-block"
-            >
-              Tarifs
-            </a>
-            <a
-              href="#demo"
-              className="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
-            >
-              Demander une démo
-            </a>
-          </div>
-        </nav>
-      </header>
-
-      <main>
-        {/* Hero */}
-        <section className="bg-[#FAFAF7] px-6 pb-16 pt-12 md:pb-24 md:pt-20">
-          <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-14">
-            <div className="text-left">
-              <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-xs font-medium text-neutral-600">
-                <span className="rounded-full bg-brand/10 px-2 py-0.5 font-semibold text-brand">
-                  v1.0.0
-                </span>
-                Installation locale · conforme CGNC
-              </p>
-
-              <h1 className="text-[40px] font-bold leading-[1.08] tracking-tight text-neutral-950 sm:text-[56px]">
-                La comptabilité marocaine, enfin simple et conforme au CGNC
-              </h1>
-
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-600">
-                Compta Soft v1.0.0 : saisie et validation des pièces, états de
-                synthèse (bilan, CPC, ESG), fiscalité IS avec liasse Simpl-IS EDI
-                DGI, trésorerie et rapprochement bancaire — plan comptable PCM
-                720 comptes, multi-dossiers PostgreSQL, déploiement on-premise.
-              </p>
-
-              <div className="mt-10 flex flex-wrap items-center gap-3">
-                <a
-                  href="#demo"
-                  className="rounded-full bg-brand px-8 py-3.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-dark"
-                >
-                  Demander une démo gratuite
-                </a>
-                <a
-                  href="#tarifs"
-                  className="rounded-full border border-neutral-200 bg-white px-8 py-3.5 text-sm font-semibold text-neutral-800 shadow-sm transition-colors hover:border-neutral-300 hover:bg-neutral-50"
-                >
-                  Voir les tarifs
-                </a>
-              </div>
+      {/* HERO */}
+      <section className="hero" style={{minHeight:"92vh",display:"flex",flexDirection:"column",justifyContent:"center",padding:"80px 48px 60px",position:"relative",overflow:"hidden",background:"var(--cream)"}}>
+        <div style={{position:"absolute",inset:0,background:"radial-gradient(ellipse 80% 60% at 70% 50%, rgba(29,158,117,0.12) 0%, transparent 70%)",pointerEvents:"none"}}/>
+        <div className="hero-badge" style={{display:"inline-flex",alignItems:"center",gap:8,background:"#fff",border:"1px solid rgba(29,158,117,0.3)",borderRadius:100,padding:"6px 16px",fontSize:12,color:"var(--green)",fontWeight:500,marginBottom:32,width:"fit-content"}}>
+          <span style={{width:6,height:6,background:"var(--green)",borderRadius:"50%",animation:"pulse 2s infinite",display:"inline-block"}}/>
+          Conforme CGNC · PCM 720 comptes · v1.0.0
+        </div>
+        <h1 className="hero-title" style={{fontFamily:"'Syne',sans-serif",fontSize:"clamp(48px,6vw,84px)",fontWeight:800,lineHeight:1.05,letterSpacing:-2,maxWidth:720,color:"var(--dark)",margin:0}}>
+          La comptabilité<br/>marocaine,<br/><em style={{fontStyle:"normal",color:"var(--green)"}}>enfin simple.</em>
+        </h1>
+        <p className="hero-sub" style={{fontSize:18,color:"#555",maxWidth:480,lineHeight:1.7,marginTop:24}}>
+          De la saisie à la liasse Simpl-IS, Compta Soft réunit tout ce dont les PME et cabinets marocains ont besoin — sans compromis réglementaire.
+        </p>
+        <div className="hero-btns" style={{display:"flex",gap:12,marginTop:36}}>
+          <button className="btn-dark" style={{background:"var(--dark)",color:"#fff",padding:"14px 28px",borderRadius:100,fontSize:15,fontWeight:500,border:"none",cursor:"pointer",transition:"all 0.25s"}}>Demander une démo →</button>
+          <button className="btn-outline" style={{background:"transparent",color:"var(--dark)",padding:"14px 28px",borderRadius:100,fontSize:15,fontWeight:500,border:"1.5px solid rgba(10,42,30,0.2)",cursor:"pointer",transition:"all 0.25s"}}>Voir les fonctionnalités</button>
+        </div>
+        <div id="stats-section" className="hero-stats" style={{display:"flex",gap:48,marginTop:56,paddingTop:40,borderTop:"1px solid rgba(10,42,30,0.08)"}}>
+          {[{count:"720",label:"Comptes PCM CGNC"},{count:"5",label:"Journaux standards"},{count:"8",label:"États de synthèse"},{count:"236",label:"Tests unitaires"}].map((s,i)=>(
+            <div key={i}>
+              <div data-count={s.count} style={{fontFamily:"'Syne',sans-serif",fontSize:36,fontWeight:800,color:"var(--dark)"}}>0</div>
+              <div style={{fontSize:13,color:"#888",marginTop:2}}>{s.label}</div>
             </div>
+          ))}
+        </div>
+      </section>
 
-            <div className="w-full">
-              <HeroMockup />
-            </div>
-          </div>
-        </section>
+      {/* TICKER */}
+      <div style={{background:"var(--dark)",padding:"16px 0",overflow:"hidden",whiteSpace:"nowrap",borderTop:"1px solid rgba(255,255,255,0.05)"}}>
+        <div className="ticker-track">
+          {[1,2].map(k=>(
+            <span key={k} style={{display:"inline-flex",alignItems:"center",gap:24,padding:"0 32px",fontSize:13,color:"rgba(255,255,255,0.7)",letterSpacing:"0.5px"}}>
+              <span style={{color:"var(--green)"}}>·</span> Bilan CGNC <span style={{color:"var(--green)"}}>·</span> CPC <span style={{color:"var(--green)"}}>·</span> ESG <span style={{color:"var(--green)"}}>·</span> Tableau de financement <span style={{color:"var(--green)"}}>·</span> Notes ETIC <span style={{color:"var(--green)"}}>·</span> Balance 9 colonnes <span style={{color:"var(--green)"}}>·</span> Grand livre tiers <span style={{color:"var(--green)"}}>·</span> Liasse EDI Simpl-IS <span style={{color:"var(--green)"}}>·</span> IS/CM/CSS <span style={{color:"var(--green)"}}>·</span> Rapprochement IA <span style={{color:"var(--green)"}}>·</span> Multi-dossiers <span style={{color:"var(--green)"}}>·</span> 720 comptes PCM <span style={{color:"var(--green)"}}>·</span>
+            </span>
+          ))}
+        </div>
+      </div>
 
-        <FeatureSection
-          id="saisie"
-          bgClass="bg-[#E8F5F0]"
-          eyebrow="Comptabilité générale"
-          title="Saisie & validation comptable"
-          description="Cycle de vie des pièces BROUILLON → VALIDE → CONTRE_PASSE, avec immutabilité des écritures validées et équilibre débit/crédit contrôlé à la validation."
-          bullets={[
-            "Saisie unitaire et saisie par lot",
-            "Validation en masse des pièces brouillon",
-            "Journaux ACH, VTE, BNQ, CAI et OD",
-            "Plan comptable marocain PCM CGNC — 720 comptes",
-          ]}
-          mockup={<SaisieMockup />}
-        />
+      {/* TABS PRODUIT */}
+      <section id="features" className="tabs-section" style={{background:"#fff",padding:"100px 48px"}}>
+        <div style={{fontSize:11,fontWeight:600,letterSpacing:2,textTransform:"uppercase",color:"var(--green)",marginBottom:16}}>Le logiciel</div>
+        <h2 style={{fontFamily:"'Syne',sans-serif",fontSize:"clamp(36px,4vw,52px)",fontWeight:800,letterSpacing:-1.5,lineHeight:1.1,color:"var(--dark)",marginBottom:48}}>
+          Tout ce dont vous avez<br/>besoin, <em style={{fontStyle:"normal",color:"var(--green)"}}>au même endroit.</em>
+        </h2>
+        <div style={{display:"flex",gap:4,background:"var(--cream)",padding:4,borderRadius:100,width:"fit-content",marginBottom:56}}>
+          {[["saisie","Saisie"],["etats","États"],["fiscal","Fiscalité"],["tresorerie","Trésorerie"]].map(([id,label],i)=>(
+            <button key={id} className={`tab-btn${i===0?" active":""}`} onClick={e=>showTab(id,e.currentTarget)}>{label}</button>
+          ))}
+        </div>
 
-        <FeatureSection
-          id="etats"
-          bgClass="bg-white"
-          reverse
-          eyebrow="Reporting CGNC"
-          title="États de synthèse & balances"
-          description="États réglementaires et balances issues du grand livre : bilan, CPC, ESG, tableau de financement, notes ETIC, avec exports PDF et XLSX."
-          bullets={[
-            "Bilan, CPC, ESG, TF et notes ETIC",
-            "Balance générale à 9 colonnes",
-            "Grand livre et balance tiers",
-            "Export PDF (PDFKit) et XLSX (ExcelJS)",
-          ]}
-          mockup={<EtatsMockup />}
-        />
-
-        <FeatureSection
-          id="fiscalite"
-          bgClass="bg-[#E8F5F0]"
-          eyebrow="Impôt sur les sociétés"
-          title="Fiscalité IS & liasse Simpl-IS"
-          description="Pipeline fiscal IS, contribution minimale et CSS, loi de finances paramétrable, export liasse EDI vers la DGI et suivi des échéances déclaratives."
-          bullets={[
-            "Résultat fiscal IS, CM et CSS",
-            "Loi de finances paramétrable (ex. LF 2026)",
-            "Liasse Simpl-IS — export EDI DGI (XML / XSD)",
-            "Agenda fiscal et déclarations rectificatives",
-          ]}
-          mockup={<FiscalMockup />}
-        />
-
-        <FeatureSection
-          id="tresorerie"
-          bgClass="bg-white"
-          reverse
-          eyebrow="Banque & caisse"
-          title="Trésorerie & rapprochement bancaire"
-          description="Import de relevés bancaires PDF avec extraction assistée par IA, rapprochement automatique des opérations, effets de commerce et position de trésorerie consolidée."
-          bullets={[
-            "Import relevé bancaire PDF (extraction IA)",
-            "Rapprochement bancaire automatique",
-            "Effets de commerce (chèques, LCR)",
-            "Position de trésorerie en temps réel",
-          ]}
-          mockup={<TresorerieMockup />}
-        />
-
-        {/* Tarifs */}
-        <section id="tarifs" className="bg-[#FAFAF7] px-6 py-20 md:py-28">
-          <div className="mx-auto max-w-6xl">
-            <div className="max-w-2xl text-left">
-              <p className="text-sm font-semibold uppercase tracking-wider text-brand">
-                Tarifs
-              </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-neutral-950 md:text-4xl">
-                Licences annuelles en dirhams
-              </h2>
-              <p className="mt-4 text-lg text-neutral-600">
-                Modèle installation locale : 1 licence = 1 poste. Formules
-                alignées sur le périmètre v1.0.0 — sans frais cachés.
-              </p>
-            </div>
-
-            <div className="mt-14 grid gap-6 lg:grid-cols-3">
-              {plans.map((plan) => (
-                <article
-                  key={plan.name}
-                  className={`relative flex flex-col rounded-2xl border p-8 ${
-                    plan.highlighted
-                      ? "border-brand bg-white shadow-xl ring-2 ring-brand"
-                      : "border-neutral-200 bg-white shadow-sm"
-                  }`}
-                >
-                  {plan.highlighted && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand px-4 py-1 text-xs font-semibold text-white">
-                      Recommandé PME
-                    </span>
-                  )}
-                  <h3 className="text-xl font-bold text-neutral-950">
-                    {plan.name}
-                  </h3>
-                  <p className="mt-2 text-sm text-neutral-500">
-                    {plan.description}
-                  </p>
-                  <div className="mt-6">
-                    <span className="text-4xl font-bold text-neutral-950">
-                      {plan.price}
-                    </span>
-                    {plan.unit && (
-                      <span className="ml-2 text-sm text-neutral-400">
-                        {plan.unit}
-                      </span>
-                    )}
-                  </div>
-                  <ul className="mt-8 flex-1 space-y-3">
-                    {plan.features.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-3 text-sm text-neutral-700"
-                      >
-                        <CheckIcon />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href="#demo"
-                    className={`mt-8 block rounded-full py-3 text-center text-sm font-semibold transition-colors ${
-                      plan.highlighted
-                        ? "bg-brand text-white hover:bg-brand-dark"
-                        : "border border-neutral-200 bg-white text-neutral-800 hover:bg-neutral-50"
-                    }`}
-                  >
-                    {plan.cta}
-                  </a>
-                </article>
+        {/* Tab Saisie */}
+        <div id="tab-saisie" className="tab-content active">
+          <div>
+            <h3 style={{fontFamily:"'Syne',sans-serif",fontSize:32,fontWeight:800,letterSpacing:-1,marginBottom:16,color:"var(--dark)"}}>Saisie & validation comptable</h3>
+            <p style={{fontSize:16,color:"#555",lineHeight:1.7,marginBottom:24}}>Du brouillon à la validation, chaque pièce suit un workflow rigoureux conforme aux normes CGNC.</p>
+            <ul style={{listStyle:"none",display:"flex",flexDirection:"column",gap:10}}>
+              {["Pièces BROUILLON → VALIDE → CONTRE_PASSE","Saisie unitaire et par lot (CSV/Excel)","Validation en masse par l'administrateur","Journaux ACH, VTE, BNQ, CAI, OD","PCM complet — 720 comptes classes 1 à 8","Contrepartie automatique banque/caisse"].map(f=>(
+                <li key={f} style={{display:"flex",alignItems:"flex-start",gap:10,fontSize:14,color:"#444"}}>
+                  <span style={{color:"var(--green)",fontWeight:700,flexShrink:0}}>→</span>{f}
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-        </section>
-
-        {/* CTA */}
-        <section id="demo" className="px-6 pb-8">
-          <div className="mx-auto max-w-6xl rounded-2xl bg-[#0D3D2E] px-8 py-14 text-center text-white md:px-16">
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
-              Pilotez votre comptabilité CGNC en local
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/75 md:text-base">
-              Démo guidée sur vos données : saisie, états, liasse Simpl-IS et
-              rapprochement bancaire. Kit client v1.0.0 — PostgreSQL, sans SaaS.
-            </p>
-            <a
-              href="mailto:demo@compta-soft.ma"
-              className="mt-8 inline-block rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-[#0D3D2E] transition-colors hover:bg-[#E8F5F0]"
-            >
-              Demander une démo
-            </a>
-          </div>
-        </section>
-      </main>
-
-      <footer className="bg-[#0D2B2B] px-6 py-16 text-white md:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-12 flex items-center gap-3">
-            <img
-              src="/brand/compta-soft-full.svg"
-              alt="Compta Soft"
-              className="h-8 w-auto brightness-0 invert"
-            />
-            <p className="max-w-md text-sm text-white/60">
-              Compta Soft v1.0.0 — CasaSoft · CGNC · installation locale
-            </p>
-          </div>
-
-          <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <h4 className="text-sm font-semibold text-white">Produit</h4>
-              <ul className="mt-4 space-y-3 text-sm text-white/60">
-                <li>
-                  <a href="#saisie" className="transition-colors hover:text-white">
-                    Saisie comptable
-                  </a>
-                </li>
-                <li>
-                  <a href="#etats" className="transition-colors hover:text-white">
-                    États de synthèse
-                  </a>
-                </li>
-                <li>
-                  <a href="#tarifs" className="transition-colors hover:text-white">
-                    Tarifs
-                  </a>
-                </li>
-                <li>
-                  <a href="#demo" className="transition-colors hover:text-white">
-                    Démo gratuite
-                  </a>
-                </li>
-              </ul>
+          <div className="mockup-float" style={{background:"var(--dark)",borderRadius:16,padding:20,overflow:"hidden"}}>
+            <div style={{display:"flex",gap:6,marginBottom:16}}>
+              {["#FF5F57","#FFBD2E","#28C840"].map(c=><div key={c} style={{width:10,height:10,borderRadius:"50%",background:c}}/>)}
             </div>
-
-            <div>
-              <h4 className="text-sm font-semibold text-white">
-                Fonctionnalités
-              </h4>
-              <ul className="mt-4 space-y-3 text-sm text-white/60">
-                <li>
-                  <a
-                    href="#fiscalite"
-                    className="transition-colors hover:text-white"
-                  >
-                    Liasse Simpl-IS
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#tresorerie"
-                    className="transition-colors hover:text-white"
-                  >
-                    Rapprochement bancaire
-                  </a>
-                </li>
-                <li>Multi-dossiers PostgreSQL</li>
-                <li>PCM CGNC 720 comptes</li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-semibold text-white">Ressources</h4>
-              <ul className="mt-4 space-y-3 text-sm text-white/60">
-                <li>
-                  <a
-                    href="https://github.com/RACHIDELALAOUI2021/compta-soft-feedback"
-                    className="transition-colors hover:text-white"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    Issues & feedback
-                  </a>
-                </li>
-                <li>Documentation CGNC</li>
-                <li>Guide Simpl-IS EDI</li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-semibold text-white">Support</h4>
-              <ul className="mt-4 space-y-3 text-sm text-white/60">
-                <li>Casablanca, Maroc</li>
-                <li>
-                  <a
-                    href="mailto:contact@casasoft.ma"
-                    className="transition-colors hover:text-white"
-                  >
-                    contact@casasoft.ma
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="mailto:demo@compta-soft.ma"
-                    className="transition-colors hover:text-white"
-                  >
-                    demo@compta-soft.ma
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-14 flex flex-col items-start justify-between gap-3 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row md:items-center">
-            <p>© {new Date().getFullYear()} CasaSoft — Tous droits réservés.</p>
-            <p>Compta Soft v1.0.0 — marque CasaSoft</p>
+            <div style={{fontSize:10,color:"rgba(255,255,255,0.3)",marginBottom:12,letterSpacing:1}}>JOURNAL BNQ — HEBERSOFT 2026</div>
+            <table style={{width:"100%",borderCollapse:"collapse",fontSize:11}}>
+              <thead><tr>{["N° PIÈCE","COMPTE","LIBELLÉ","DÉBIT","STATUT"].map(h=><th key={h} style={{color:"rgba(255,255,255,0.4)",fontWeight:500,textAlign:"left",padding:"6px 10px",borderBottom:"1px solid rgba(255,255,255,0.06)",fontSize:10,letterSpacing:"0.5px"}}>{h}</th>)}</tr></thead>
+              <tbody>
+                {[["BNQ-001","5141","Virement client","45 200,00","#4ECFA0","VALIDE","green"],["BNQ-002","4411","Fournisseur Maroc","12 800,00","#ff8a8a","VALIDE","green"],["BNQ-003","6111","Achats marchandises","8 500,00","#ff8a8a","BROUILLON","orange"],["BNQ-004","3421","Client HEBERSOFT","28 000,00","#4ECFA0","VALIDE","green"]].map(([n,c,l,m,mc,s,sc])=>(
+                  <tr key={n}>
+                    <td style={{color:"rgba(255,255,255,0.8)",padding:"8px 10px",borderBottom:"1px solid rgba(255,255,255,0.04)",fontSize:11}}>{n}</td>
+                    <td style={{color:"rgba(255,255,255,0.8)",padding:"8px 10px",borderBottom:"1px solid rgba(255,255,255,0.04)",fontSize:11}}>{c}</td>
+                    <td style={{color:"rgba(255,255,255,0.8)",padding:"8px 10px",borderBottom:"1px solid rgba(255,255,255,0.04)",fontSize:11}}>{l}</td>
+                    <td style={{color:mc as string,padding:"8px 10px",borderBottom:"1px solid rgba(255,255,255,0.04)",fontSize:11}}>{m}</td>
+                    <td style={{padding:"8px 10px",borderBottom:"1px solid rgba(255,255,255,0.04)"}}><span style={{background:sc==="green"?"rgba(29,158,117,0.2)":"rgba(255,160,50,0.15)",color:sc==="green"?"#4ECFA0":"#FFA032",padding:"2px 8px",borderRadius:4,fontSize:10}}>{s}</span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
+
+        {/* Tab États */}
+        <div id="tab-etats" className="tab-content">
+          <div>
+            <h3 style={{fontFamily:"'Syne',sans-serif",fontSize:32,fontWeight:800,letterSpacing:-1,marginBottom:16,color:"var(--dark)"}}>États de synthèse CGNC</h3>
+            <p style={{fontSize:16,color:"#555",lineHeight:1.7,marginBottom:24}}>Tous les états réglementaires générés automatiquement depuis vos écritures validées.</p>
+            <ul style={{listStyle:"none",display:"flex",flexDirection:"column",gap:10}}>
+              {["Bilan, CPC, ESG, Tableau de financement","Notes ETIC complètes","Balance 9 colonnes (générale, auxiliaires)","Grand livre et balance tiers","Balance âgée et lettrage","Export PDF / XLSX en un clic"].map(f=>(
+                <li key={f} style={{display:"flex",alignItems:"flex-start",gap:10,fontSize:14,color:"#444"}}><span style={{color:"var(--green)",fontWeight:700,flexShrink:0}}>→</span>{f}</li>
+              ))}
+            </ul>
+          </div>
+          <div style={{background:"var(--dark)",borderRadius:16,padding:20,overflow:"hidden"}}>
+            <div style={{display:"flex",gap:6,marginBottom:16}}>{["#FF5F57","#FFBD2E","#28C840"].map(c=><div key={c} style={{width:10,height:10,borderRadius:"50%",background:c}}/>)}</div>
+            <div style={{fontSize:10,color:"rgba(255,255,255,0.3)",marginBottom:12,letterSpacing:1}}>BALANCE 9 COLONNES — HEBERSOFT 2026</div>
+            <table style={{width:"100%",borderCollapse:"collapse",fontSize:11}}>
+              <thead><tr>{["COMPTE","INTITULÉ","DÉBIT N","CRÉDIT N","SOLDE"].map(h=><th key={h} style={{color:"rgba(255,255,255,0.4)",fontWeight:500,textAlign:"left",padding:"6px 10px",borderBottom:"1px solid rgba(255,255,255,0.06)",fontSize:10}}>{h}</th>)}</tr></thead>
+              <tbody>
+                {[["3421","Clients","280 000","120 000","160 000","#4ECFA0"],["4411","Fournisseurs","45 000","195 000","150 000","#ff8a8a"],["5141","Banque","520 000","380 000","140 000","#4ECFA0"],["6111","Achats M/ses","95 000","0","95 000","#ff8a8a"]].map(([c,l,d,cr,s,sc])=>(
+                  <tr key={c}>{[c,l,d,cr].map((v,i)=><td key={i} style={{color:"rgba(255,255,255,0.8)",padding:"8px 10px",borderBottom:"1px solid rgba(255,255,255,0.04)",fontSize:11}}>{v}</td>)}<td style={{color:sc as string,padding:"8px 10px",borderBottom:"1px solid rgba(255,255,255,0.04)",fontSize:11,fontWeight:600}}>{s}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Tab Fiscal */}
+        <div id="tab-fiscal" className="tab-content">
+          <div>
+            <h3 style={{fontFamily:"'Syne',sans-serif",fontSize:32,fontWeight:800,letterSpacing:-1,marginBottom:16,color:"var(--dark)"}}>Fiscalité IS & liasse Simpl-IS</h3>
+            <p style={{fontSize:16,color:"#555",lineHeight:1.7,marginBottom:24}}>Pipeline fiscal complet conforme au CGI marocain — jusqu'à la génération XML pour la DGI.</p>
+            <ul style={{listStyle:"none",display:"flex",flexDirection:"column",gap:10}}>
+              {["Résultat fiscal IS → CM → crédits CM → CSS","Loi de finances paramétrable (2026)","Réintégrations, déductions, déficits reportés","Liasse EDI XML Simpl-IS (CDC DGI 1.9.4)","Agenda fiscal et déclarations rectificatives","Gel à clôture — immutabilité garantie"].map(f=>(
+                <li key={f} style={{display:"flex",alignItems:"flex-start",gap:10,fontSize:14,color:"#444"}}><span style={{color:"var(--green)",fontWeight:700,flexShrink:0}}>→</span>{f}</li>
+              ))}
+            </ul>
+          </div>
+          <div style={{background:"var(--dark)",borderRadius:16,padding:20,overflow:"hidden"}}>
+            <div style={{display:"flex",gap:6,marginBottom:16}}>{["#FF5F57","#FFBD2E","#28C840"].map(c=><div key={c} style={{width:10,height:10,borderRadius:"50%",background:c}}/>)}</div>
+            <div style={{fontSize:10,color:"rgba(255,255,255,0.3)",marginBottom:12,letterSpacing:1}}>RÉSULTAT FISCAL IS — 2026</div>
+            <table style={{width:"100%",borderCollapse:"collapse",fontSize:11}}>
+              <thead><tr>{["LIGNE","LIBELLÉ","MONTANT MAD"].map(h=><th key={h} style={{color:"rgba(255,255,255,0.4)",fontWeight:500,textAlign:"left",padding:"6px 10px",borderBottom:"1px solid rgba(255,255,255,0.06)",fontSize:10}}>{h}</th>)}</tr></thead>
+              <tbody>
+                {[["RF01","Résultat comptable","185 400,00","#4ECFA0"],["RF12","Réintégrations","+12 600,00","#ff8a8a"],["RF18","Déductions","-8 200,00","#4ECFA0"],["RF25","Résultat fiscal brut","189 800,00","#fff"],["IS","IS dû (taux 20%)","37 960,00","#FFA032"]].map(([l,n,m,c])=>(
+                  <tr key={l}><td style={{color:"rgba(255,255,255,0.6)",padding:"8px 10px",borderBottom:"1px solid rgba(255,255,255,0.04)",fontSize:11}}>{l}</td><td style={{color:"rgba(255,255,255,0.8)",padding:"8px 10px",borderBottom:"1px solid rgba(255,255,255,0.04)",fontSize:11}}>{n}</td><td style={{color:c as string,padding:"8px 10px",borderBottom:"1px solid rgba(255,255,255,0.04)",fontSize:11,fontWeight:600}}>{m}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Tab Trésorerie */}
+        <div id="tab-tresorerie" className="tab-content">
+          <div>
+            <h3 style={{fontFamily:"'Syne',sans-serif",fontSize:32,fontWeight:800,letterSpacing:-1,marginBottom:16,color:"var(--dark)"}}>Trésorerie & rapprochement IA</h3>
+            <p style={{fontSize:16,color:"#555",lineHeight:1.7,marginBottom:24}}>Importez vos relevés PDF — l'IA extrait les lignes et les rapproche automatiquement avec vos écritures.</p>
+            <ul style={{listStyle:"none",display:"flex",flexDirection:"column",gap:10}}>
+              {["Import relevé bancaire PDF (extraction IA)","Rapprochement automatique ±0,01 MAD","Effets de commerce et omissions bancaires","Position trésorerie et prévisions","Exports rapprochement","Clé IA chiffrée — vos données restent chez vous"].map(f=>(
+                <li key={f} style={{display:"flex",alignItems:"flex-start",gap:10,fontSize:14,color:"#444"}}><span style={{color:"var(--green)",fontWeight:700,flexShrink:0}}>→</span>{f}</li>
+              ))}
+            </ul>
+          </div>
+          <div style={{background:"var(--dark)",borderRadius:16,padding:20,overflow:"hidden"}}>
+            <div style={{display:"flex",gap:6,marginBottom:16}}>{["#FF5F57","#FFBD2E","#28C840"].map(c=><div key={c} style={{width:10,height:10,borderRadius:"50%",background:c}}/>)}</div>
+            <div style={{fontSize:10,color:"rgba(255,255,255,0.3)",marginBottom:12,letterSpacing:1}}>RAPPROCHEMENT BNQ — CIH BANK</div>
+            <table style={{width:"100%",borderCollapse:"collapse",fontSize:11}}>
+              <thead><tr>{["DATE","LIBELLÉ","MONTANT","STATUT"].map(h=><th key={h} style={{color:"rgba(255,255,255,0.4)",fontWeight:500,textAlign:"left",padding:"6px 10px",borderBottom:"1px solid rgba(255,255,255,0.06)",fontSize:10}}>{h}</th>)}</tr></thead>
+              <tbody>
+                {[["02/06","VIR HEBERSOFT CLIENT","28 000","RAPPROCHÉ","green"],["03/06","PRLV FOURNISSEUR","12 800","RAPPROCHÉ","green"],["04/06","COMMISSION BANQUE","450","EN ATTENTE","orange"]].map(([d,l,m,s,sc])=>(
+                  <tr key={d}><td style={{color:"rgba(255,255,255,0.8)",padding:"8px 10px",borderBottom:"1px solid rgba(255,255,255,0.04)",fontSize:11}}>{d}</td><td style={{color:"rgba(255,255,255,0.8)",padding:"8px 10px",borderBottom:"1px solid rgba(255,255,255,0.04)",fontSize:11}}>{l}</td><td style={{color:sc==="green"?"#4ECFA0":"#ff8a8a",padding:"8px 10px",borderBottom:"1px solid rgba(255,255,255,0.04)",fontSize:11}}>{m}</td><td style={{padding:"8px 10px",borderBottom:"1px solid rgba(255,255,255,0.04)"}}><span style={{background:sc==="green"?"rgba(29,158,117,0.2)":"rgba(255,160,50,0.15)",color:sc==="green"?"#4ECFA0":"#FFA032",padding:"2px 8px",borderRadius:4,fontSize:10}}>{s}</span></td></tr>
+                ))}
+              </tbody>
+            </table>
+            <div style={{marginTop:12,padding:8,background:"rgba(29,158,117,0.1)",borderRadius:6,fontSize:10,color:"#4ECFA0"}}>✓ 2/3 lignes rapprochées automatiquement par IA</div>
+          </div>
+        </div>
+      </section>
+
+      {/* TARIFS */}
+      <section id="tarifs" className="pricing reveal" style={{background:"var(--cream)",padding:"100px 48px"}}>
+        <div style={{textAlign:"center",fontSize:11,fontWeight:600,letterSpacing:2,textTransform:"uppercase",color:"var(--green)",marginBottom:16}}>Tarifs</div>
+        <h2 style={{fontFamily:"'Syne',sans-serif",fontSize:"clamp(36px,4vw,52px)",fontWeight:800,letterSpacing:-1.5,textAlign:"center",color:"var(--dark)",margin:"0 auto 8px"}}>Simple et transparent</h2>
+        <p style={{textAlign:"center",color:"#888",fontSize:16,marginBottom:0}}>Licence annuelle. Hébergé chez vous. Vos données restent les vôtres.</p>
+        <div className="pricing-grid" style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:20,maxWidth:960,margin:"48px auto 0"}}>
+          {[
+            {tag:"Starter",name:"TPE",price:"4 900",sub:"/an",desc:"Pour les indépendants et toutes petites entreprises",features:["1 dossier","2 utilisateurs","États de synthèse CGNC","Support email"],featured:false},
+            {tag:"Le plus choisi",name:"PME",price:"9 900",sub:"/an",desc:"Pour les PME marocaines qui veulent tout",features:["3 dossiers","5 utilisateurs","Liasse Simpl-IS + fiscalité","Trésorerie IA","Support prioritaire"],featured:true},
+            {tag:"Cabinet",name:"Multi-dossiers",price:"Sur devis",sub:"",desc:"Pour les cabinets comptables et fiduciaires",features:["Dossiers illimités","Utilisateurs illimités","Formation incluse","Accompagnement dédié"],featured:false},
+          ].map((p)=>(
+            <div key={p.name} className="price-card reveal" style={{background:p.featured?"var(--dark)":"#fff",borderRadius:20,padding:36,border:p.featured?"none":"1px solid rgba(10,42,30,0.08)"}}>
+              <div style={{display:"inline-block",background:p.featured?"rgba(29,158,117,0.2)":"var(--light)",color:p.featured?"#4ECFA0":"var(--green)",fontSize:11,fontWeight:600,padding:"4px 12px",borderRadius:100,marginBottom:20}}>{p.tag}</div>
+              <div style={{fontFamily:"'Syne',sans-serif",fontSize:20,fontWeight:800,color:p.featured?"#fff":"var(--dark)"}}>{p.name}</div>
+              <div style={{fontFamily:"'Syne',sans-serif",fontSize:p.price==="Sur devis"?28:40,fontWeight:800,margin:"16px 0 4px",color:p.featured?"#fff":"var(--dark)"}}>
+                {p.price!=="Sur devis"&&<sup style={{fontSize:18}}>MAD </sup>}{p.price}<span style={{fontSize:14,fontWeight:400,opacity:0.5}}>{p.sub}</span>
+              </div>
+              <div style={{fontSize:13,color:p.featured?"rgba(255,255,255,0.6)":"#888",marginBottom:24,paddingBottom:24,borderBottom:`1px solid ${p.featured?"rgba(255,255,255,0.1)":"rgba(10,42,30,0.08)"}`}}>{p.desc}</div>
+              <ul style={{listStyle:"none",display:"flex",flexDirection:"column",gap:10}}>
+                {p.features.map(f=>(
+                  <li key={f} style={{fontSize:13,color:p.featured?"rgba(255,255,255,0.7)":"#555",display:"flex",alignItems:"center",gap:8}}>
+                    <span style={{color:"var(--green)",fontWeight:700}}>✓</span>{f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section id="contact" style={{background:"var(--dark)",padding:"100px 48px",textAlign:"center",position:"relative",overflow:"hidden"}}>
+        <div style={{position:"absolute",inset:0,background:"radial-gradient(ellipse 60% 80% at 50% 50%,rgba(29,158,117,0.15) 0%,transparent 70%)"}}/>
+        <h2 className="reveal" style={{fontFamily:"'Syne',sans-serif",fontSize:"clamp(36px,5vw,64px)",fontWeight:800,color:"#fff",letterSpacing:-2,lineHeight:1.05,position:"relative",zIndex:1}}>
+          Prêt à moderniser<br/>votre <em style={{fontStyle:"normal",color:"var(--green)"}}>comptabilité</em> ?
+        </h2>
+        <p className="reveal" style={{fontSize:17,color:"rgba(255,255,255,0.5)",marginTop:20,position:"relative",zIndex:1}}>
+          Rejoignez les premières entreprises marocaines qui font confiance à Compta Soft.
+        </p>
+        <div className="reveal" style={{display:"flex",gap:12,justifyContent:"center",marginTop:40,position:"relative",zIndex:1}}>
+          <button className="btn-green" style={{background:"var(--green)",color:"#fff",padding:"16px 36px",borderRadius:100,fontSize:15,fontWeight:600,border:"none",cursor:"pointer",transition:"all 0.25s"}}>Demander une démo →</button>
+          <button className="btn-white" style={{background:"rgba(255,255,255,0.1)",color:"#fff",padding:"16px 36px",borderRadius:100,fontSize:15,fontWeight:500,border:"1px solid rgba(255,255,255,0.15)",cursor:"pointer",transition:"all 0.25s"}}>Voir les tarifs</button>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={{background:"#060F0A",padding:"60px 48px 32px",color:"rgba(255,255,255,0.5)"}}>
+        <div className="footer-top" style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",gap:48,paddingBottom:48,borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
+          <div>
+            <div style={{fontFamily:"'Syne',sans-serif",fontSize:22,fontWeight:800,color:"#fff",marginBottom:12}}>Compta<span style={{color:"var(--green)"}}>Soft</span></div>
+            <div style={{fontSize:13,lineHeight:1.6}}>Logiciel de comptabilité conforme au Plan Comptable Marocain CGNC — conçu pour les PME et cabinets au Maroc.</div>
+            <div style={{marginTop:20,fontSize:12,color:"rgba(255,255,255,0.2)"}}>© 2026 CasaSoft · Tous droits réservés</div>
+          </div>
+          {[{title:"Produit",links:["Fonctionnalités","Tarifs","Changelog"]},{title:"Ressources",links:["Documentation","Guide CGNC","Blog"]},{title:"Support",links:["Nous contacter","Partenaires","Mentions légales"]}].map(col=>(
+            <div key={col.title}>
+              <h4 style={{fontSize:12,fontWeight:600,letterSpacing:1,textTransform:"uppercase",color:"rgba(255,255,255,0.3)",marginBottom:16}}>{col.title}</h4>
+              {col.links.map(l=><a key={l} href="#" style={{display:"block",fontSize:13,color:"rgba(255,255,255,0.5)",textDecoration:"none",marginBottom:10}}>{l}</a>)}
+            </div>
+          ))}
+        </div>
       </footer>
-    </div>
+    </>
   );
 }
