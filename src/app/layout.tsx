@@ -7,9 +7,44 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://compta-soft-site.vercel.app";
+
+const title = "Compta Soft — Logiciel de comptabilité CGNC Maroc";
+const description =
+  "Logiciel de comptabilité conforme au Plan Comptable Marocain CGNC. Bilan, CPC, ESG, liasse Simpl-IS, multi-dossiers. Pour PME et cabinets au Maroc.";
+
 export const metadata: Metadata = {
-  title: "Compta Soft",
-  description: "La comptabilité marocaine, enfin simple",
+  title,
+  description,
+  keywords: [
+    "logiciel comptabilité maroc",
+    "CGNC",
+    "PCM",
+    "liasse fiscale",
+    "Simpl-IS",
+    "bilan CPC ESG",
+    "comptabilité PME maroc",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
+  openGraph: {
+    title,
+    description,
+    url: siteUrl,
+    type: "website",
+    locale: "fr_FR",
+    siteName: "Compta Soft",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
   icons: {
     icon: "/compta-soft-logo.png",
   },
