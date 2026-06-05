@@ -16,7 +16,7 @@
 - Metadata complète (OG, Twitter, canonical, robots)
 - sitemap.xml + robots.txt
 
-## Module Support (à développer)
+## Module Support (implémenté)
 ### Workflow
 - Client soumet ticket sans compte (juste email)
 - Types : Bug logiciel / Question utilisation / Demande d'amélioration
@@ -33,12 +33,19 @@ NOUVEAU → EN_COURS → RESOLU → FERME
 - Auth admin : NextAuth email/mot de passe
 - ORM : Prisma
 
-### Schema Prisma (à créer)
+### Schema Prisma
 Ticket : id, numero, email, societe, type, sujet, description, statut, token (UUID unique pour lien suivi), createdAt, updatedAt
 Message : id, ticketId, auteur (CLIENT/ADMIN), contenu, createdAt
 
-### Pages à créer
+### Pages
 - /support — formulaire ouverture ticket
 - /support/[token] — suivi ticket client (accès par token)
+- /admin/login — connexion admin
 - /admin/tickets — liste tickets (auth admin)
 - /admin/tickets/[id] — détail + réponse admin
+
+### Mise en service
+1. Copier `.env.example` → `.env` et renseigner `DATABASE_URL`, `RESEND_API_KEY`, `ADMIN_SESSION_SECRET`
+2. `npm run db:push` — créer les tables Neon
+3. `npm run admin:create` — créer le compte admin (`ADMIN_EMAIL` / `ADMIN_PASSWORD`)
+4. Déployer sur Vercel avec les mêmes variables d'environnement

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { TicketStatut, TicketType } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/auth";
