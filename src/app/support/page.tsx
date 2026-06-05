@@ -23,6 +23,7 @@ export default function SupportPage() {
     const form = new FormData(e.currentTarget);
     const payload = {
       email: form.get("email"),
+      codeClient: form.get("codeClient"),
       societe: form.get("societe"),
       type: form.get("type"),
       sujet: form.get("sujet"),
@@ -86,8 +87,8 @@ export default function SupportPage() {
               Ouvrir un ticket
             </h1>
             <p style={{ fontSize: 16, color: "#555", lineHeight: 1.7, marginTop: 16, maxWidth: 520 }}>
-              Décrivez votre problème ou votre question. Vous recevrez un email avec un lien de suivi unique — sans
-              création de compte.
+              Réservé aux clients licenciés. Saisissez votre code client (ex. HEBERSOFT, GBS) pour ouvrir un ticket —
+              vous recevrez un email avec un lien de suivi unique.
             </p>
           </div>
         </div>
@@ -151,6 +152,21 @@ export default function SupportPage() {
                   Email *
                 </label>
                 <input className="form-inp" id="email" name="email" type="email" required autoComplete="email" />
+              </div>
+              <div style={{ marginBottom: 16 }}>
+                <label className="form-lbl" htmlFor="codeClient">
+                  Code client *
+                </label>
+                <input
+                  className="form-inp"
+                  id="codeClient"
+                  name="codeClient"
+                  type="text"
+                  required
+                  autoComplete="off"
+                  placeholder="HEBERSOFT, GBS…"
+                  style={{ textTransform: "uppercase" }}
+                />
               </div>
               <div style={{ marginBottom: 16 }}>
                 <label className="form-lbl" htmlFor="societe">

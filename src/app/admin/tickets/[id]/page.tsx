@@ -19,6 +19,7 @@ type Ticket = {
   id: string;
   numero: string;
   email: string;
+  codeClient: string;
   societe: string | null;
   type: TicketType;
   sujet: string;
@@ -173,7 +174,7 @@ export default function AdminTicketDetailPage() {
       </h1>
 
       <p style={{ fontSize: 14, color: "#888", marginBottom: 28 }}>
-        {ticket.email}
+        {ticket.codeClient} · {ticket.email}
         {ticket.societe ? ` · ${ticket.societe}` : ""} · Ouvert le {formatDate(ticket.createdAt)}
       </p>
 

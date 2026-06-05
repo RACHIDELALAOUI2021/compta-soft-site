@@ -18,6 +18,7 @@ type Message = {
 type Ticket = {
   numero: string;
   email: string;
+  codeClient: string;
   societe: string | null;
   type: TicketType;
   sujet: string;
@@ -148,6 +149,7 @@ export default function SupportTicketPage() {
                 </h1>
                 <p style={{ fontSize: 14, color: "#888", marginTop: 10 }}>
                   Ouvert le {formatDate(ticket.createdAt)}
+                  {ticket.codeClient ? ` · ${ticket.codeClient}` : ""}
                   {ticket.societe ? ` · ${ticket.societe}` : ""}
                 </p>
               </>

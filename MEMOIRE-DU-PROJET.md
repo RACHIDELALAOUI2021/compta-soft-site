@@ -18,7 +18,8 @@
 
 ## Module Support (implémenté)
 ### Workflow
-- Client soumet ticket sans compte (juste email)
+- Client licencié soumet ticket sans compte (email + **code client obligatoire**)
+- Le code client doit figurer dans `VALID_CLIENT_CODES` (ex. `HEBERSOFT,GBS`) — sinon refus 403
 - Types : Bug logiciel / Question utilisation / Demande d'amélioration
 - Client reçoit email avec numéro ticket + lien de suivi unique
 - Client peut consulter et répondre via lien unique (token UUID)
@@ -34,7 +35,7 @@ NOUVEAU → EN_COURS → RESOLU → FERME
 - ORM : Prisma
 
 ### Schema Prisma
-Ticket : id, numero, email, societe, type, sujet, description, statut, token (UUID unique pour lien suivi), createdAt, updatedAt
+Ticket : id, numero, email, codeClient, societe, type, sujet, description, statut, token (UUID unique pour lien suivi), createdAt, updatedAt
 Message : id, ticketId, auteur (CLIENT/ADMIN), contenu, createdAt
 
 ### Pages
@@ -45,7 +46,7 @@ Message : id, ticketId, auteur (CLIENT/ADMIN), contenu, createdAt
 - /admin/tickets/[id] — détail + réponse admin
 
 ### Mise en service
-1. Copier `.env.example` → `.env` et renseigner `DATABASE_URL`, `RESEND_API_KEY`, `ADMIN_SESSION_SECRET`
+1. Copier `.env.example` → `.env` et renseigner `DATABASE_URL`, `RESEND_API_KEY`, `ADMIN_SESSION_SECRET`, `VALID_CLIENT_CODES`
 2. `npm run db:push` — créer les tables Neon
 3. `npm run admin:create` — créer le compte admin (`ADMIN_EMAIL` / `ADMIN_PASSWORD`)
 4. Déployer sur Vercel avec les mêmes variables d'environnement

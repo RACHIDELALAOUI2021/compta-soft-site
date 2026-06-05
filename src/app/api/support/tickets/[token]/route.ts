@@ -25,6 +25,7 @@ export async function GET(
       id: ticket.id,
       numero: ticket.numero,
       email: ticket.email,
+      codeClient: ticket.codeClient,
       societe: ticket.societe,
       type: ticket.type,
       sujet: ticket.sujet,

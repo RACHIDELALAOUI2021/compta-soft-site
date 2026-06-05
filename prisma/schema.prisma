@@ -28,6 +28,7 @@ model Ticket {
   id          String        @id @default(cuid())
   numero      String        @unique
   email       String
+  codeClient  String
   societe     String?
   type        TicketType
   sujet       String

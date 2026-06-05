@@ -37,6 +37,7 @@ export async function GET(req: NextRequest) {
         id: t.id,
         numero: t.numero,
         email: t.email,
+        codeClient: t.codeClient,
         societe: t.societe,
         type: t.type,
         sujet: t.sujet,
