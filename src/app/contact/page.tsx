@@ -59,7 +59,7 @@ export default function ContactPage() {
       >
         <div>
           <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: "var(--g)", marginBottom: 14 }}>
-            CasaSoft
+            HEBERSOFT
           </div>
           <h2
             style={{
@@ -76,11 +76,21 @@ export default function ContactPage() {
           <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 16, fontSize: 14, color: "#555", lineHeight: 1.6 }}>
             <li>
               <strong style={{ display: "block", color: "var(--dk)", marginBottom: 4 }}>Éditeur</strong>
-              CasaSoft — éditeur de Compta Soft
+              HEBERSOFT SARL
             </li>
             <li>
               <strong style={{ display: "block", color: "var(--dk)", marginBottom: 4 }}>Adresse</strong>
-              Casablanca, Maroc
+              Place Al Yassir, Résidence Al Mansouria, 3ème étage, N°6, Casablanca
+            </li>
+            <li>
+              <strong style={{ display: "block", color: "var(--dk)", marginBottom: 4 }}>Téléphone</strong>
+              <a href="tel:+212522245563" style={{ color: "var(--g)" }}>
+                05 22 24 55 63
+              </a>
+            </li>
+            <li>
+              <strong style={{ display: "block", color: "var(--dk)", marginBottom: 4 }}>Fax</strong>
+              05 22 24 55 68
             </li>
             <li>
               <strong style={{ display: "block", color: "var(--dk)", marginBottom: 4 }}>Email</strong>
@@ -89,9 +99,9 @@ export default function ContactPage() {
               </a>
             </li>
             <li>
-              <strong style={{ display: "block", color: "var(--dk)", marginBottom: 4 }}>Téléphone</strong>
-              <a href="tel:+212522000000" style={{ color: "var(--g)" }}>
-                +212 5 22 00 00 00
+              <strong style={{ display: "block", color: "var(--dk)", marginBottom: 4 }}>Site</strong>
+              <a href="https://www.hebersoft.ma" target="_blank" rel="noopener noreferrer" style={{ color: "var(--g)" }}>
+                www.hebersoft.ma
               </a>
             </li>
           </ul>
