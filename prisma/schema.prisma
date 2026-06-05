@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum TicketType {
+  BUG
+  QUESTION
+  AMELIORATION
+}
+
+enum TicketStatut {
+  NOUVEAU
+  EN_COURS
+  RESOLU
+  FERME
+}
+
+enum MessageAuteur {
+  CLIENT
+  ADMIN
+}
+
+model Ticket {
+  id          String        @id @default(cuid())
+  numero      String        @unique
+  email       String
+  societe     String?
+  type        TicketType
+  sujet       String
+  description String        @db.Text
+  statut      TicketStatut  @default(NOUVEAU)
+  token       String        @unique
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  messages    Message[]
+}
+
+model Message {
+  id        String        @id @default(cuid())
+  ticketId  String
+  ticket    Ticket        @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  auteur    MessageAuteur
+  contenu   String        @db.Text
+  createdAt DateTime      @default(now())
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}

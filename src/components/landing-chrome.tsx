@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, type ReactNode } from "react";
 
 export const LANDING_STYLES = `
@@ -59,6 +60,7 @@ export const LANDING_STYLES = `
     .page-section,.contact-grid{padding-left:20px!important;padding-right:20px!important}
     .contact-grid{grid-template-columns:1fr!important}
     .contact-grid form > div[style*="grid"]{grid-template-columns:1fr!important}
+    .admin-detail-grid{grid-template-columns:1fr!important}
   }
 `;
 
@@ -77,12 +79,13 @@ export function ScrollReveal() {
 export function SiteNav() {
   return (
     <nav className="nav">
-      <a href="/">
+      <Link href="/">
         <img src="/brand/compta-soft-nav.svg" alt="Compta Soft" style={{ height: 44, width: "auto" }} />
-      </a>
+      </Link>
       <div className="nav-links">
         <a href="/fonctionnalites">Fonctionnalités</a>
         <a href="/tarifs">Tarifs</a>
+        <Link href="/support">Support</Link>
         <a href="/contact">Contact</a>
       </div>
       <a href="/contact" className="nav-cta" style={{ display: "inline-block" }}>
@@ -117,7 +120,7 @@ export function SiteFooter() {
         {[
           { t: "Produit", links: [["Fonctionnalités", "/fonctionnalites"], ["Tarifs", "/tarifs"], ["Changelog", "#"]] },
           { t: "Ressources", links: [["Documentation", "#"], ["Guide CGNC", "#"], ["Blog", "#"]] },
-          { t: "Support", links: [["Contact", "/contact"], ["Partenaires", "#"], ["Mentions légales", "#"]] },
+          { t: "Support", links: [["Tickets support", "/support"], ["Contact", "/contact"], ["Mentions légales", "#"]] },
         ].map((col) => (
           <div key={col.t}>
             <h4

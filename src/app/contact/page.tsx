@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { LandingShell } from "@/components/landing-chrome";
 
@@ -37,7 +38,7 @@ export default function ContactPage() {
               Contactez-nous
             </h1>
             <p style={{ fontSize: 16, color: "#555", lineHeight: 1.7, marginTop: 16, maxWidth: 480 }}>
-              Demande de démo, devis ou question technique — l'équipe CasaSoft vous répond sous 48 h ouvrées.
+              Demande de démo, devis ou question technique — l&apos;équipe CasaSoft vous répond sous 48 h ouvrées.
             </p>
           </div>
         </div>
@@ -106,19 +107,16 @@ export default function ContactPage() {
             <p style={{ fontSize: 13, color: "#555", lineHeight: 1.6, marginBottom: 12 }}>
               Signaler un bug ou proposer une amélioration :
             </p>
-            <a
-              href="https://github.com/casasoft/compta-soft-feedback"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/support"
               style={{
                 fontSize: 14,
                 fontWeight: 600,
                 color: "var(--g)",
-                wordBreak: "break-all",
               }}
             >
-              compta-soft-feedback →
-            </a>
+              Ouvrir un ticket support →
+            </Link>
           </div>
         </div>
 
