@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { SiteFooter } from "@/components/landing-chrome";
 
@@ -94,6 +95,8 @@ export default function Home() {
         .btn-dk:hover{background:var(--g);transform:translateY(-2px)}
         .btn-ol{background:transparent;color:var(--dk);padding:13px 26px;border-radius:100px;font-size:14px;font-weight:500;border:1.5px solid rgba(10,42,30,.2);cursor:pointer;transition:all .2s}
         .btn-ol:hover{border-color:var(--g);color:var(--g)}
+        .btn-ol-gn{background:transparent;color:var(--g);padding:13px 26px;border-radius:100px;font-size:14px;font-weight:500;border:1.5px solid #1D9E75;cursor:pointer;transition:all .2s;display:inline-block}
+        .btn-ol-gn:hover{background:rgba(29,158,117,.08);transform:translateY(-2px)}
         .btn-gn{background:var(--g);color:#fff;padding:14px 32px;border-radius:100px;font-size:15px;font-weight:600;border:none;cursor:pointer;transition:all .2s}
         .btn-gn:hover{background:#16785A;transform:translateY(-2px)}
         .btn-wh{background:rgba(255,255,255,.1);color:#fff;padding:14px 32px;border-radius:100px;font-size:15px;font-weight:500;border:1px solid rgba(255,255,255,.2);cursor:pointer;transition:all .2s}
@@ -153,9 +156,9 @@ export default function Home() {
             <p className="a3" style={{fontSize:16,color:"#555",lineHeight:1.7,marginTop:20,maxWidth:420}}>
               De la saisie à la liasse Simpl-IS, Compta Soft réunit tout ce dont les PME et cabinets marocains ont besoin.
             </p>
-            <div className="a4" style={{display:"flex",gap:12,marginTop:28}}>
+            <div className="a4" style={{display:"flex",gap:12,marginTop:28,flexWrap:"wrap"}}>
               <button className="btn-dk">Demander une démo →</button>
-              <button className="btn-ol">Voir les fonctionnalités</button>
+              <Link href="/support" className="btn-ol-gn">Ouvrir un ticket support</Link>
             </div>
             <div id="stats" className="a5" style={{display:"flex",gap:40,marginTop:44,paddingTop:36,borderTop:"1px solid rgba(10,42,30,.08)"}}>
               {[["720","Comptes PCM CGNC"],["5","Journaux standards"],["8","États de synthèse"],["236","Tests unitaires"]].map(([n,l])=>(
