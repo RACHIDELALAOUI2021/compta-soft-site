@@ -5,22 +5,32 @@ import { LandingShell } from "@/components/landing-chrome";
 
 const SECTIONS = [
   {
-    title: "Éditeur du site",
+    title: "Éditeur du logiciel",
     content: (
       <>
         <p style={{ marginBottom: 12 }}>
-          Le site <strong>comptasoftmaroc.com</strong> est édité par :
+          Le site <strong>comptasoftmaroc.com</strong> et le logiciel <strong>Compta Soft</strong> sont édités par :
         </p>
         <p style={{ lineHeight: 1.8 }}>
-          <strong>CasaSoft</strong>
+          <strong>HEBERSOFT SARL</strong>
           <br />
-          Éditeur du logiciel Compta Soft
+          Siège social : Place Al Yassir, Résidence Al Mansouira, 3ème étage, N°6, Casablanca
           <br />
-          Maroc
+          Téléphone : 05 22 24 55 63
           <br />
-          Email :{" "}
-          <a href="mailto:contact@comptasoft.ma" style={{ color: "var(--g)" }}>
-            contact@comptasoft.ma
+          Fax : 05 22 24 55 68
+          <br />
+          RC : 650245
+          <br />
+          Taxe professionnelle : 35796718
+          <br />
+          ICE : 003574489000014
+          <br />
+          IF : 65145800
+          <br />
+          Site web :{" "}
+          <a href="https://www.hebersoft.ma" target="_blank" rel="noopener noreferrer" style={{ color: "var(--g)" }}>
+            www.hebersoft.ma
           </a>
         </p>
       </>
@@ -46,7 +56,7 @@ const SECTIONS = [
     content: (
       <p style={{ lineHeight: 1.8 }}>
         L&apos;ensemble du contenu de ce site (textes, graphismes, logo, structure) est la propriété exclusive de
-        CasaSoft, sauf mention contraire. Toute reproduction, représentation ou diffusion, totale ou partielle, sans
+        HEBERSOFT SARL, sauf mention contraire. Toute reproduction, représentation ou diffusion, totale ou partielle, sans
         autorisation écrite préalable est interdite.
       </p>
     ),
@@ -93,7 +103,7 @@ const SECTIONS = [
     title: "Limitation de responsabilité",
     content: (
       <p style={{ lineHeight: 1.8 }}>
-        CasaSoft s&apos;efforce d&apos;assurer l&apos;exactitude des informations publiées sur ce site. Toutefois, elle
+        HEBERSOFT SARL s&apos;efforce d&apos;assurer l&apos;exactitude des informations publiées sur ce site. Toutefois, elle
         ne saurait être tenue responsable des omissions, inexactitudes ou carences dans la mise à jour, ni des dommages
         résultant de l&apos;utilisation des informations diffusées.
       </p>
