@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { SiteFooter } from "@/components/landing-chrome";
 
 const SLIDES = [
   "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=900&q=80",
@@ -346,27 +347,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer style={{background:"#060F0A",padding:"56px 60px 28px",color:"rgba(255,255,255,.5)"}}>
-        <div className="ft-grid">
-          <div>
-            <svg width="140" height="32" viewBox="0 0 160 36" xmlns="http://www.w3.org/2000/svg">
-              <rect x="0" y="2" width="32" height="32" rx="7" fill="#0E7A73"/>
-              <text x="16" y="23" fontFamily="system-ui,sans-serif" fontSize="15" fontWeight="900" fill="#fff" textAnchor="middle">CS</text>
-              <text x="42" y="26" fontFamily="system-ui,sans-serif" fontSize="22" fontWeight="800" fill="#fff">Compta</text>
-              <text x="113" y="26" fontFamily="system-ui,sans-serif" fontSize="22" fontWeight="800" fill="#1D9E75">Soft</text>
-            </svg>
-            <p style={{fontSize:13,lineHeight:1.6,marginTop:12,maxWidth:260}}>Logiciel de comptabilité conforme au Plan Comptable Marocain CGNC.</p>
-            <p style={{fontSize:11,color:"rgba(255,255,255,.2)",marginTop:20}}>© 2026 CasaSoft · Tous droits réservés</p>
-          </div>
-          {[{t:"Produit",l:["Fonctionnalités","Tarifs","Changelog"]},{t:"Ressources",l:["Documentation","Guide CGNC","Blog"]},{t:"Support",l:["Contact","Partenaires","Mentions légales"]}].map(col=>(
-            <div key={col.t}>
-              <h4 style={{fontSize:11,fontWeight:600,letterSpacing:1,textTransform:"uppercase",color:"rgba(255,255,255,.3)",marginBottom:14}}>{col.t}</h4>
-              {col.l.map(l=><a key={l} href="#" style={{display:"block",fontSize:13,color:"rgba(255,255,255,.5)",marginBottom:9,transition:"color .2s"}}>{l}</a>)}
-            </div>
-          ))}
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

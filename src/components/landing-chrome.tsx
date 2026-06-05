@@ -118,9 +118,17 @@ export function SiteFooter() {
           <p style={{ fontSize: 11, color: "rgba(255,255,255,.2)", marginTop: 20 }}>© 2026 CasaSoft · Tous droits réservés</p>
         </div>
         {[
-          { t: "Produit", links: [["Fonctionnalités", "/fonctionnalites"], ["Tarifs", "/tarifs"], ["Changelog", "#"]] },
-          { t: "Ressources", links: [["Documentation", "#"], ["Guide CGNC", "#"], ["Blog", "#"]] },
-          { t: "Support", links: [["Tickets support", "/support"], ["Contact", "/contact"], ["Mentions légales", "#"]] },
+          { t: "Produit", links: [["Fonctionnalités", "/fonctionnalites"], ["Tarifs", "/tarifs"], ["Changelog", "/changelog"]] },
+          { t: "Ressources", links: [["Documentation", "/documentation"], ["Guide CGNC", "/guide-cgnc"], ["Blog", "/blog"]] },
+          {
+            t: "Support",
+            links: [
+              ["Tickets support", "/support"],
+              ["Contact", "/contact"],
+              ["Partenaires", "/partenaires"],
+              ["Mentions légales", "/mentions-legales"],
+            ],
+          },
         ].map((col) => (
           <div key={col.t}>
             <h4
