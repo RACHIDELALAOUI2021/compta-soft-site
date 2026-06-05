@@ -313,8 +313,16 @@ export default function Home() {
             <div key={p.name} className={`pc rev${p.feat2?" feat":""}`}>
               <div style={{display:"inline-block",background:p.feat2?"rgba(29,158,117,.2)":"var(--lt)",color:p.feat2?"#4ECFA0":"var(--g)",fontSize:11,fontWeight:600,padding:"3px 11px",borderRadius:100,marginBottom:18}}>{p.tag}</div>
               <div style={{fontFamily:"'Syne',sans-serif",fontSize:18,fontWeight:800,color:p.feat2?"#fff":"var(--dk)"}}>{p.name}</div>
-              <div style={{fontFamily:"'Syne',sans-serif",fontSize:p.price==="Sur devis"?24:38,fontWeight:800,margin:"14px 0 4px",color:p.feat2?"#fff":"var(--dk)"}}>
-                {p.price!=="Sur devis"&&<sup style={{fontSize:14}}>MAD </sup>}{p.price}<span style={{fontSize:13,fontWeight:400,opacity:.5}}>{p.sub}</span>
+              <div style={{fontFamily:"'Syne',sans-serif",margin:"14px 0 4px",color:p.feat2?"#fff":"var(--dk)"}}>
+                {p.price==="Sur devis" ? (
+                  <span style={{fontSize:24,fontWeight:800}}>{p.price}</span>
+                ) : (
+                  <div style={{display:"flex",alignItems:"baseline",gap:4,whiteSpace:"nowrap",fontWeight:800}}>
+                    <span style={{fontSize:14}}>MAD</span>
+                    <span style={{fontSize:28}}>{p.price}</span>
+                    <span style={{fontSize:13,fontWeight:400,opacity:.5}}>{p.sub}</span>
+                  </div>
+                )}
               </div>
               <div style={{fontSize:12,color:p.feat2?"rgba(255,255,255,.6)":"#888",marginBottom:20,paddingBottom:20,borderBottom:`1px solid ${p.feat2?"rgba(255,255,255,.1)":"rgba(10,42,30,.08)"}`}}>{p.desc}</div>
               <ul style={{listStyle:"none",display:"flex",flexDirection:"column",gap:9}}>
