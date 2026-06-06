@@ -54,7 +54,7 @@ const PLANS = [
       "Formation équipe incluse",
       "Accompagnement déploiement",
       "Personnalisation & intégrations",
-      "Support dédié CasaSoft",
+      "Support dédié HEBERSOFT",
     ],
     featured: false,
   },
@@ -79,7 +79,7 @@ const FAQ = [
   },
   {
     q: "Quel support est prévu ?",
-    a: "Starter : support email sous 48 h ouvrées. PME : support prioritaire (email + téléphone). Cabinet : interlocuteur dédié CasaSoft et accompagnement à la prise en main.",
+    a: "Starter : support email sous 48 h ouvrées. PME : support prioritaire (email + téléphone). Cabinet : interlocuteur dédié HEBERSOFT et accompagnement à la prise en main.",
   },
 ];
 

@@ -46,7 +46,7 @@ export default function PartenairesPage() {
                 color: "var(--dk)",
               }}
             >
-              Devenez partenaire CasaSoft
+              Devenez partenaire HEBERSOFT
             </h1>
             <p style={{ fontSize: 16, color: "#555", lineHeight: 1.7, marginTop: 16, maxWidth: 560 }}>
               Revendeurs, intégrateurs et cabinets comptables — distribuez Compta Soft et accompagnez vos clients dans
@@ -95,7 +95,7 @@ export default function PartenairesPage() {
                 Demande envoyée
               </h2>
               <p style={{ fontSize: 15, color: "#666", lineHeight: 1.6 }}>
-                Merci pour votre intérêt. L&apos;équipe CasaSoft vous contactera sous 48 h ouvrées.
+                Merci pour votre intérêt. L&apos;équipe HEBERSOFT vous contactera sous 48 h ouvrées.
               </p>
             </div>
           ) : (

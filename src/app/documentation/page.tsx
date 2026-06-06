@@ -16,7 +16,7 @@ const SECTIONS = [
   {
     title: "Installation",
     items: [
-      "Téléchargez le package d'installation depuis votre espace client CasaSoft",
+      "Téléchargez le package d'installation depuis votre espace client HEBERSOFT",
       "Lancez l'installateur et suivez l'assistant (dossier d'installation, raccourci bureau)",
       "Au premier lancement, saisissez la clé de licence reçue par email",
       "Configurez votre premier dossier comptable (raison sociale, ICE, exercice fiscal)",

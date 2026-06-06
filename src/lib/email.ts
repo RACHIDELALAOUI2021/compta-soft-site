@@ -36,7 +36,7 @@ function emailLayout(content: string) {
         </tr>
         <tr>
           <td style="padding:20px 32px;background:#F7F4EF;font-size:12px;color:#888;border-top:1px solid rgba(10,42,30,.06);">
-            CasaSoft · Compta Soft — Support technique
+            HEBERSOFT · Compta Soft — Support technique
           </td>
         </tr>
       </table>

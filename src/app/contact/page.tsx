@@ -38,7 +38,7 @@ export default function ContactPage() {
               Contactez-nous
             </h1>
             <p style={{ fontSize: 16, color: "#555", lineHeight: 1.7, marginTop: 16, maxWidth: 480 }}>
-              Demande de démo, devis ou question technique — l&apos;équipe CasaSoft vous répond sous 48 h ouvrées.
+              Demande de démo, devis ou question technique — l&apos;équipe HEBERSOFT vous répond sous 48 h ouvrées.
             </p>
           </div>
         </div>

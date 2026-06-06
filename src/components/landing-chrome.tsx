@@ -115,7 +115,7 @@ export function SiteFooter() {
           <p style={{ fontSize: 13, lineHeight: 1.6, marginTop: 12, maxWidth: 260 }}>
             Logiciel de comptabilité conforme au Plan Comptable Marocain CGNC.
           </p>
-          <p style={{ fontSize: 11, color: "rgba(255,255,255,.2)", marginTop: 20 }}>© 2026 CasaSoft · Tous droits réservés</p>
+          <p style={{ fontSize: 11, color: "rgba(255,255,255,.2)", marginTop: 20 }}>© 2026 HEBERSOFT · Tous droits réservés</p>
         </div>
         {[
           { t: "Produit", links: [["Fonctionnalités", "/fonctionnalites"], ["Tarifs", "/tarifs"], ["Changelog", "/changelog"]] },
