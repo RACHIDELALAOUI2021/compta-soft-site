@@ -6,7 +6,7 @@ const SECTIONS = [
   {
     id: "saisie",
     title: "Saisie & validation comptable",
-    desc: "Du brouillon à la validation, chaque pièce suit un workflow rigoureux conforme aux normes CGNC — v1.0.0.",
+    desc: "Du brouillon à la validation, chaque pièce suit un workflow rigoureux conforme aux normes CGNC.",
     features: [
       "Pièces BROUILLON → VALIDE → CONTRE_PASSE",
       "Saisie unitaire et par lot (CSV/Excel)",
@@ -38,9 +38,7 @@ const SECTIONS = [
               <td>{c}</td>
               <td>{l}</td>
               <td>{m}</td>
-              <td>
-                <span className={sc}>{s}</span>
-              </td>
+              <td><span className={sc}>{s}</span></td>
             </tr>
           ))}
         </tbody>
@@ -91,15 +89,15 @@ const SECTIONS = [
   },
   {
     id: "fiscal",
-    title: "Fiscalité IS",
-    desc: "Pipeline fiscal complet conforme au CGI marocain jusqu'à la génération XML pour la DGI.",
+    title: "Fiscalité IS & déclarations DGI",
+    desc: "Pipeline fiscal complet conforme au CGI 2026 — de l'IS aux déclarations DGI avec export XML.",
     features: [
-      "Résultat fiscal IS → CM → crédits CM → CSS",
-      "Loi de finances paramétrable (2026)",
-      "Réintégrations, déductions, déficits reportés",
-      "Liasse EDI XML Simpl-IS (CDC DGI 1.9.4)",
-      "Agenda fiscal et déclarations rectificatives",
-      "Gel à clôture — immutabilité garantie",
+      "Calcul IS automatique — taux 20%/35% (Art. 19 CGI 2026)",
+      "Cotisation minimale 0,25% (Art. 144 CGI)",
+      "CSS — contribution sociale de solidarité (Art. 267-273 CGI)",
+      "4 acomptes provisionnels (Art. 170 CGI)",
+      "Liasse fiscale EDI Simpl-IS — export XML DGI",
+      "FEC conforme Avis CNC N°24 — 18 champs obligatoires",
     ],
     label: "RÉSULTAT FISCAL IS — 2026",
     table: (
@@ -130,6 +128,48 @@ const SECTIONS = [
     ),
   },
   {
+    id: "declarations",
+    title: "Déclarations fiscales DGI",
+    desc: "Tous les états annexes réglementaires conformes au CGI 2026 — génération PDF et XML en un clic.",
+    features: [
+      "TVA SIMPL-TVA v2 — 4 taux, export XML DGI (Art. 95-117 CGI)",
+      "RAS TVA — ADC086B-26I, attestation régularité fiscale (Art. 117 IV-V)",
+      "RAS IS dividendes — taux 11,25% en 2026 (Art. 158 + Art. 247-XXXVII-C)",
+      "État gasoil carburant — ADC083B-20I (Art. 106 I-4° CGI)",
+      "Délais de paiement — ADC500B-23I, amendes BAM (Loi 69-21)",
+      "Ventes par client ADC020B-21I · Rémunérations tiers ADC030B-26I",
+    ],
+    label: "DÉCLARATIONS DGI — 2026",
+    flip: true,
+    table: (
+      <table>
+        <thead>
+          <tr>
+            {["MODÈLE", "DÉCLARATION", "STATUT"].map((h) => (
+              <th key={h}>{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {[
+            ["SIMPL-TVA", "TVA 4 taux — XML DGI", "bg"],
+            ["ADC086B-26I", "RAS TVA — attestation", "bg"],
+            ["ADC083B-20I", "État gasoil", "bg"],
+            ["ADC500B-23I", "Délais paiement BAM", "bg"],
+            ["ADC020B-21I", "Ventes par client", "bg"],
+            ["ADC030B-26I", "Rémunérations tiers", "bg"],
+          ].map(([m, l, sc]) => (
+            <tr key={m}>
+              <td style={{ color: "#4ECFA0", fontFamily: "monospace", fontSize: 10 }}>{m}</td>
+              <td>{l}</td>
+              <td><span className={sc}>Actif</span></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    ),
+  },
+  {
     id: "tresorerie",
     title: "Trésorerie IA",
     desc: "Importez vos relevés PDF — l'IA extrait les lignes et les rapproche automatiquement.",
@@ -142,7 +182,6 @@ const SECTIONS = [
       "Clé IA chiffrée — vos données restent chez vous",
     ],
     label: "RAPPROCHEMENT BNQ — CIH BANK",
-    flip: true,
     table: (
       <>
         <table>
@@ -163,9 +202,7 @@ const SECTIONS = [
                 <td>{d}</td>
                 <td>{l}</td>
                 <td>{m}</td>
-                <td>
-                  <span className={sc}>{s}</span>
-                </td>
+                <td><span className={sc}>{s}</span></td>
               </tr>
             ))}
           </tbody>
@@ -189,6 +226,7 @@ const SECTIONS = [
       "Export XLSX des extraits analytiques",
     ],
     label: "BALANCE ANALYTIQUE — PROJET A",
+    flip: true,
     table: (
       <table>
         <thead>
@@ -230,7 +268,6 @@ const SECTIONS = [
       "Intégration bilan (brut, amortissements, net)",
     ],
     label: "REGISTRE IMMOBILISATIONS — 2026",
-    flip: true,
     table: (
       <table>
         <thead>
@@ -253,6 +290,47 @@ const SECTIONS = [
               <td>{v}</td>
               <td>{a}</td>
               <td style={{ color: col, fontWeight: 600 }}>{vnc}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    ),
+  },
+  {
+    id: "multidossiers",
+    title: "Multi-dossiers & sécurité",
+    desc: "Gérez plusieurs sociétés dans une seule interface — chaque dossier est isolé et sécurisé.",
+    features: [
+      "Nombre illimité de dossiers/sociétés",
+      "Schéma PostgreSQL isolé par dossier",
+      "Profils ADMIN / COMPTABLE / LECTURE",
+      "Permissions granulaires par module",
+      "Journaux d'audit complets",
+      "Accès sécurisé par session et dossier",
+    ],
+    label: "GESTION DOSSIERS — CABINET",
+    flip: true,
+    table: (
+      <table>
+        <thead>
+          <tr>
+            {["DOSSIER", "SOCIÉTÉ", "EXERCICE", "STATUT"].map((h) => (
+              <th key={h}>{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {[
+            ["DOS-001", "HEBERSOFT SARL", "2026", "bg"],
+            ["DOS-002", "Global Building Sol.", "2026", "bg"],
+            ["DOS-003", "Tingis Consulting", "2026", "bg"],
+            ["DOS-004", "Nouvelle société", "2026", "bo"],
+          ].map(([d, s, e, sc]) => (
+            <tr key={d}>
+              <td style={{ color: "#4ECFA0", fontFamily: "monospace" }}>{d}</td>
+              <td>{s}</td>
+              <td>{e}</td>
+              <td><span className={sc}>{sc === "bg" ? "Actif" : "En cours"}</span></td>
             </tr>
           ))}
         </tbody>
@@ -290,7 +368,7 @@ export default function FonctionnalitesPage() {
                 marginBottom: 28,
               }}
             >
-              v1.0.0 · Conforme CGNC · PCM 720 comptes
+              v1.2.0 · Conforme CGI 2026 · 8 modules actifs
             </div>
             <h1
               style={{
@@ -305,7 +383,7 @@ export default function FonctionnalitesPage() {
               Toutes les fonctionnalités
             </h1>
             <p style={{ fontSize: 16, color: "#555", lineHeight: 1.7, marginTop: 20, maxWidth: 480 }}>
-              Saisie, états de synthèse, fiscalité IS, trésorerie IA, analytique et immobilisations — le périmètre complet de Compta Soft pour la comptabilité marocaine.
+              Saisie, états de synthèse, fiscalité IS, déclarations DGI, trésorerie IA, analytique, immobilisations et multi-dossiers — le périmètre complet de Compta Soft pour la comptabilité marocaine.
             </p>
             <div style={{ display: "flex", gap: 12, marginTop: 28 }}>
               <a href="/contact" className="btn-dk" style={{ display: "inline-block" }}>
@@ -317,7 +395,7 @@ export default function FonctionnalitesPage() {
             </div>
           </div>
           <div className="hero-right rev" style={{ height: 520, borderRadius: 20, overflow: "hidden" }}>
-            <MockupChrome label="APERÇU — COMPTA SOFT v1.0.0">
+            <MockupChrome label="APERÇU — COMPTA SOFT v1.2.0">
               <table>
                 <thead>
                   <tr>
@@ -331,16 +409,16 @@ export default function FonctionnalitesPage() {
                     ["Saisie CGNC", "Actif", "bg"],
                     ["États synthèse", "Actif", "bg"],
                     ["Fiscalité IS", "Actif", "bg"],
+                    ["Déclarations DGI", "Actif", "bg"],
                     ["Trésorerie IA", "Actif", "bg"],
                     ["Analytique", "Actif", "bg"],
                     ["Immobilisations", "Actif", "bg"],
+                    ["Multi-dossiers", "Actif", "bg"],
                   ].map(([m, s, sc]) => (
                     <tr key={m}>
                       <td>{m}</td>
-                      <td>
-                        <span className={sc}>{s}</span>
-                      </td>
-                      <td style={{ color: "#4ECFA0" }}>1.0.0</td>
+                      <td><span className={sc}>{s}</span></td>
+                      <td style={{ color: "#4ECFA0" }}>1.2.0</td>
                     </tr>
                   ))}
                 </tbody>
@@ -389,7 +467,9 @@ export default function FonctionnalitesPage() {
         >
           Prêt à tester Compta Soft ?
         </h2>
-        <p style={{ fontSize: 15, color: "rgba(255,255,255,.5)", marginTop: 14 }}>Demandez une démo personnalisée pour votre structure.</p>
+        <p style={{ fontSize: 15, color: "rgba(255,255,255,.5)", marginTop: 14 }}>
+          Demandez une démo personnalisée pour votre structure.
+        </p>
         <a href="/contact" className="btn-gn" style={{ display: "inline-block", marginTop: 28 }}>
           Nous contacter →
         </a>
