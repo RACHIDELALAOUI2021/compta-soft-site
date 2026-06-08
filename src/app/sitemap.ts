@@ -1,18 +1,38 @@
 import { MetadataRoute } from 'next'
 
+const BASE = 'https://comptasoftmaroc.com'
+
+const BLOG_SLUGS = [
+  'simpl-tva-maroc-2026',
+  'attestation-regularite-fiscale-art-117',
+  'ras-is-dividendes-maroc-2026',
+  'fec-maroc-obligations-export',
+  'delais-paiement-loi-69-21',
+  'liasse-fiscale-simpl-is-maroc',
+  'cgnc-plan-comptable-maroc',
+  'cotisation-minimale-maroc-2026',
+]
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://compta-soft-site.vercel.app'
+  const blogArticles: MetadataRoute.Sitemap = BLOG_SLUGS.map((slug) => ({
+    url: `${BASE}/blog/${slug}`,
+    lastModified: new Date('2026-06-08'),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }))
+
   return [
-    { url: base, lastModified: new Date(), changeFrequency: 'monthly', priority: 1 },
-    { url: `${base}/fonctionnalites`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${base}/tarifs`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${base}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/support`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/changelog`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${base}/documentation`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${base}/guide-cgnc`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${base}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.5 },
-    { url: `${base}/partenaires`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${base}/mentions-legales`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
+    { url: BASE, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
+    { url: `${BASE}/fonctionnalites`, lastModified: new Date('2026-06-08'), changeFrequency: 'monthly', priority: 0.95 },
+    { url: `${BASE}/tarifs`, lastModified: new Date('2026-06-08'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/blog`, lastModified: new Date('2026-06-08'), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${BASE}/documentation`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
+    { url: `${BASE}/guide-cgnc`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
+    { url: `${BASE}/changelog`, lastModified: new Date('2026-06-08'), changeFrequency: 'monthly', priority: 0.65 },
+    { url: `${BASE}/partenaires`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BASE}/support`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BASE}/mentions-legales`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
+    ...blogArticles,
   ]
 }
