@@ -148,7 +148,7 @@ export default function Home() {
           <div className="hero-left">
             <div className="a1" style={{display:"inline-flex",alignItems:"center",gap:8,background:"#fff",border:"1px solid rgba(29,158,117,.3)",borderRadius:100,padding:"5px 14px",fontSize:11,color:"var(--g)",fontWeight:500,marginBottom:28}}>
               <span style={{width:6,height:6,background:"var(--g)",borderRadius:"50%",animation:"pulse 2s infinite",display:"inline-block"}}/>
-              Conforme CGNC · PCM 720 comptes · v1.0.0
+              Conforme CGI 2026 · PCM 720 comptes · v1.2.0
             </div>
             <h1 className="a2" style={{fontFamily:"'Syne',sans-serif",fontSize:"clamp(28px,3vw,44px)",fontWeight:800,lineHeight:1.1,letterSpacing:-1,color:"var(--dk)"}}>
               La comptabilité<br/>marocaine,<br/><em style={{fontStyle:"normal",color:"var(--g)"}}>enfin simple.</em>
@@ -161,7 +161,7 @@ export default function Home() {
               <Link href="/support" className="btn-ol-gn">Ouvrir un ticket support</Link>
             </div>
             <div id="stats" className="a5" style={{display:"flex",gap:40,marginTop:44,paddingTop:36,borderTop:"1px solid rgba(10,42,30,.08)"}}>
-              {[["720","Comptes PCM CGNC"],["5","Journaux standards"],["8","États de synthèse"],["236","Tests unitaires"]].map(([n,l])=>(
+              {[["720","Comptes PCM CGNC"],["8","Déclarations DGI"],["8","États de synthèse"],["236","Tests unitaires"]].map(([n,l])=>(
                 <div key={l}>
                   <div data-count={n} style={{fontFamily:"'Syne',sans-serif",fontSize:32,fontWeight:800,color:"var(--dk)"}}>0</div>
                   <div style={{fontSize:12,color:"#888",marginTop:2}}>{l}</div>
@@ -187,7 +187,7 @@ export default function Home() {
         <div className="ticker">
           {[0,1].map(k=>(
             <span key={k} style={{display:"inline-flex",alignItems:"center",gap:20,padding:"0 28px",fontSize:12,color:"rgba(255,255,255,.65)",letterSpacing:".5px"}}>
-              {["Bilan CGNC","CPC","ESG","Tableau de financement","Notes ETIC","Balance 9 colonnes","Grand livre tiers","Liasse EDI Simpl-IS","IS/CM/CSS","Rapprochement IA","Multi-dossiers","720 comptes PCM","Clôture annuelle"].map(item=>(
+              {["Bilan CGNC","CPC","ESG","Tableau de financement","Notes ETIC","Balance 9 colonnes","Liasse EDI Simpl-IS","SIMPL-TVA v2","RAS TVA Art.117","RAS IS dividendes","Délais paiement Loi 69-21","FEC CNC N°24","IS/CM/CSS","Rapprochement IA","Multi-dossiers","720 comptes PCM"].map(item=>(
                 <span key={item}><span style={{color:"var(--g)",marginRight:20}}>·</span>{item}</span>
               ))}
             </span>
@@ -202,7 +202,7 @@ export default function Home() {
           Tout ce dont vous avez besoin,<br/><em style={{fontStyle:"normal",color:"var(--g)"}}>au même endroit.</em>
         </h2>
         <div style={{display:"flex",gap:4,background:"var(--cr)",padding:4,borderRadius:100,width:"fit-content",marginBottom:48}}>
-          {[["saisie","Saisie"],["etats","États"],["fiscal","Fiscalité"],["tresorerie","Trésorerie"]].map(([id,label],i)=>(
+          {[["saisie","Saisie"],["etats","États"],["fiscal","Fiscalité"],["declarations","Déclarations DGI"],["tresorerie","Trésorerie"]].map(([id,label],i)=>(
             <button key={id} className={`tab-btn${i===0?" on":""}`} onClick={e=>showTab(id,e.currentTarget)}>{label}</button>
           ))}
         </div>
@@ -273,6 +273,29 @@ export default function Home() {
             <tbody>
               {[["RF01","Résultat comptable","185 400,00","#4ECFA0"],["RF12","Réintégrations","+12 600,00","#ff8a8a"],["RF18","Déductions","-8 200,00","#4ECFA0"],["RF25","Résultat fiscal brut","189 800,00","#fff"],["IS","IS dû (taux 20%)","37 960,00","#FFA032"]].map(([l,n,m,c])=>(
                 <tr key={l}><td style={{color:"rgba(255,255,255,.6)"}}>{l}</td><td>{n}</td><td style={{color:c as string,fontWeight:600}}>{m}</td></tr>
+              ))}
+            </tbody></table>
+          </div>
+        </div>
+
+        {/* Declarations DGI */}
+        <div id="t-declarations" className="tab-panel">
+          <div>
+            <h3 style={{fontFamily:"'Syne',sans-serif",fontSize:28,fontWeight:800,letterSpacing:-1,marginBottom:14,color:"var(--dk)"}}>Déclarations fiscales DGI</h3>
+            <p style={{fontSize:15,color:"#555",lineHeight:1.7,marginBottom:22}}>Tous les états annexes réglementaires — génération PDF et export XML en un clic, conformes CGI 2026.</p>
+            <ul style={{listStyle:"none",display:"flex",flexDirection:"column",gap:10}}>
+              {["TVA SIMPL-TVA v2 — 4 taux, export XML DGI (Art. 95-117 CGI)","RAS TVA — ADC086B-26I, attestation régularité fiscale (Art. 117 IV-V)","RAS IS dividendes — taux 11,25% en 2026 (Art. 158 + Art. 247-XXXVII-C)","État gasoil carburant — ADC083B-20I (Art. 106 I-4° CGI)","Délais de paiement — ADC500B-23I, amendes BAM (Loi 69-21)","Ventes par client ADC020B-21I · Rémunérations tiers ADC030B-26I"].map(f=>(
+                <li key={f} style={{display:"flex",gap:10,fontSize:14,color:"#444"}}><span style={{color:"var(--g)",fontWeight:700,flexShrink:0}}>→</span>{f}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="mkp">
+            <div className="mkp-bar">{["#FF5F57","#FFBD2E","#28C840"].map(c=><div key={c} className="mkp-dot" style={{background:c}}/>)}</div>
+            <div className="mkp-lbl">DÉCLARATIONS DGI — 2026</div>
+            <table><thead><tr>{["MODÈLE","DÉCLARATION","STATUT"].map(h=><th key={h}>{h}</th>)}</tr></thead>
+            <tbody>
+              {[["SIMPL-TVA","TVA 4 taux — XML DGI","bg"],["ADC086B-26I","RAS TVA attestation","bg"],["ADC083B-20I","État gasoil","bg"],["ADC500B-23I","Délais paiement BAM","bg"],["ADC020B-21I","Ventes par client","bg"],["ADC030B-26I","Rémunérations tiers","bg"]].map(([m,l,sc])=>(
+                <tr key={m}><td style={{color:"#4ECFA0",fontFamily:"monospace",fontSize:9}}>{m}</td><td>{l}</td><td><span className={sc as string}>Actif</span></td></tr>
               ))}
             </tbody></table>
           </div>
