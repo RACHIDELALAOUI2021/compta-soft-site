@@ -195,6 +195,42 @@ export default function Home() {
         </div>
       </div>
 
+      {/* BLOG — derniers articles */}
+      <section className="rev" style={{background:"var(--cr)",padding:"72px 60px"}}>
+        <div style={{maxWidth:1200,margin:"0 auto"}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",marginBottom:36,flexWrap:"wrap",gap:16}}>
+            <div>
+              <div style={{fontSize:11,fontWeight:600,letterSpacing:2,textTransform:"uppercase",color:"var(--g)",marginBottom:10}}>Ressources</div>
+              <h2 style={{fontFamily:"'Syne',sans-serif",fontSize:"clamp(24px,3vw,36px)",fontWeight:800,letterSpacing:-1,lineHeight:1.1,color:"var(--dk)"}}>
+                Guides fiscaux & comptables
+              </h2>
+            </div>
+            <Link href="/blog" style={{fontSize:13,fontWeight:600,color:"var(--g)",whiteSpace:"nowrap"}}>
+              Tous les articles →
+            </Link>
+          </div>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))",gap:20}}>
+            {[
+              {slug:"simpl-tva-maroc-2026",tag:"TVA",title:"SIMPL-TVA 2026 : guide complet pour les entreprises marocaines",date:"8 juin 2026"},
+              {slug:"attestation-regularite-fiscale-art-117",tag:"RAS TVA",title:"Attestation de régularité fiscale fournisseur (Art. 117 CGI)",date:"8 juin 2026"},
+              {slug:"ras-is-dividendes-maroc-2026",tag:"IS",title:"RAS IS dividendes : taux 2026 et obligations (Art. 158 CGI)",date:"8 juin 2026"},
+              {slug:"fec-maroc-obligations-export",tag:"FEC",title:"FEC Maroc : obligations légales et export comptable",date:"7 juin 2026"},
+            ].map(a=>(
+              <Link key={a.slug} href={`/blog/${a.slug}`} style={{textDecoration:"none"}}>
+                <div style={{background:"#fff",borderRadius:16,padding:"24px 26px",border:"1px solid rgba(10,42,30,.07)",height:"100%",display:"flex",flexDirection:"column",gap:12,transition:"all .3s",cursor:"pointer"}}
+                  onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.transform="translateY(-4px)";(e.currentTarget as HTMLElement).style.boxShadow="0 16px 32px rgba(10,42,30,.1)"}}
+                  onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.transform="none";(e.currentTarget as HTMLElement).style.boxShadow="none"}}
+                >
+                  <span style={{fontSize:10,fontWeight:600,padding:"2px 9px",borderRadius:100,background:"var(--lt)",color:"var(--g)",width:"fit-content"}}>{a.tag}</span>
+                  <p style={{fontFamily:"'Syne',sans-serif",fontSize:14,fontWeight:800,color:"var(--dk)",lineHeight:1.4,flexGrow:1}}>{a.title}</p>
+                  <p style={{fontSize:11,color:"#aaa"}}>{a.date}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* TABS PRODUIT */}
       <section id="features" className="tabs-section" style={{background:"#fff",padding:"90px 60px"}}>
         <div style={{fontSize:11,fontWeight:600,letterSpacing:2,textTransform:"uppercase",color:"var(--g)",marginBottom:14}}>Le logiciel</div>
